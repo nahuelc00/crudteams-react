@@ -1,7 +1,7 @@
 import React from 'react';
 
-function ButtonAddClub() {
+function AddClub() {
   return <a href="/form/add" className="btn btn-light">Add club</a>;
 }
 
-export { ButtonAddClub };
+export { AddClub };

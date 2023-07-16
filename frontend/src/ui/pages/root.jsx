@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  ClubsCounter, ButtonAddClub, ClubsGrid, Loader,
+  ClubsCounter, AddClub, ClubsGrid, Loader,
 } from '../components';
 import { useFetchClubs } from '../../hooks/useFetchClubs';
 
@@ -17,7 +17,7 @@ function Root() {
           <>
             <div className="d-flex align-items-center mb-5">
               <ClubsCounter clubsQuantity={clubs.length} />
-              <ButtonAddClub />
+              <AddClub />
             </div>
             <ClubsGrid clubs={clubs} />
           </>
