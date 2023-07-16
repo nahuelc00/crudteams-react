@@ -1,0 +1,104 @@
+body {
+  background-color: #222;
+  color: white;
+}
+
+#root {
+  margin: 30px 20px 30px 20px;
+}
+@media (min-width: 600px) {
+  #root {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.col-teams,
+.col-countries,
+.col-actions,
+.club__name,
+.club__country {
+  font-size: 12px;
+}
+@media (min-width: 320px) {
+  .col-teams,
+  .col-countries,
+  .col-actions,
+  .club__name,
+  .club__country {
+    font-size: 16px;
+  }
+}
+@media (min-width: 600px) {
+  .clubs-counter {
+    font-size: 20px;
+  }
+
+  .col-teams,
+  .col-countries,
+  .col-actions,
+  .club__name,
+  .club__country {
+    font-size: 18px;
+  }
+}
+
+.container-shield-name {
+  display: grid;
+  justify-items: center;
+}
+@media (min-width: 600px) {
+  .container-shield-name {
+    display: flex;
+    justify-items: initial;
+    align-items: center;
+  }
+}
+
+.container-shield-name__shield {
+  width: 30px;
+  height: 30px;
+}
+@media (min-width: 600px) {
+  .container-shield-name__shield {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px 0 0;
+  }
+}
+
+.actions {
+  display: grid;
+  justify-content: center;
+  gap: 3px;
+}
+@media (min-width: 280px) {
+  .actions {
+    display: flex;
+  }
+}
+@media (min-width: 600px) {
+  .actions {
+    gap: 10px;
+  }
+}
+
+.actions__see,
+.actions__edit,
+.actions__delete {
+  background-color: white;
+  border-radius: 5px;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+}
+@media (min-width: 600px) {
+  .actions__see,
+  .actions__edit,
+  .actions__delete {
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+  }
+}
