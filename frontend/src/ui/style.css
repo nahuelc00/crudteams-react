@@ -102,3 +102,8 @@ body {
     padding: 2px;
   }
 }
+
+.club-form__fieldset {
+  margin: 0 0 10px 0;
+  height: 100px;
+}

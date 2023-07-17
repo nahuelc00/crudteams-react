@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { Root } from './pages';
+import { Root, Form } from './pages';
 
 const router = createBrowserRouter([
   {
@@ -11,6 +11,10 @@ const router = createBrowserRouter([
   {
     path: '/clubs',
     element: <Root />,
+  },
+  {
+    path: '/form/add',
+    element: <Form />,
   },
 ]);
 
