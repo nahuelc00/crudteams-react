@@ -22,16 +22,28 @@ function getClubs() {
 
 function saveClub(newClub, shieldImgFile) {
   const clubs = getClubs();
-
   const lastClub = clubs[clubs.length - 1];
-  // eslint-disable-next-line no-param-reassign
-  newClub.id = lastClub.id + 1;
-  // eslint-disable-next-line no-param-reassign
-  newClub.crestUrl = `http://localhost:8080/files/${shieldImgFile.filename}`;
 
-  clubs.push(newClub);
+  const clubToSave = {
+    id: lastClub.id + 1,
+    area: { name: newClub.nameArea, id: Number(newClub.idArea) },
+    name: newClub.name,
+    shortName: newClub.shortName,
+    tla: newClub.tla,
+    crestUrl: `http://localhost:8080/files/${shieldImgFile.filename}`,
+    address: newClub.address,
+    phone: newClub.phone,
+    website: newClub.website,
+    email: newClub.email,
+    founded: Number(newClub.founded),
+    clubColors: newClub.clubColors,
+    venue: newClub.venue,
+  };
+
+  clubs.push(clubToSave);
+
   fs.writeFileSync(PATH_DB, JSON.stringify(clubs));
-  fs.writeFileSync(`./data/equipos/${newClub.tla}.json`, JSON.stringify(newClub));
+  fs.writeFileSync(`./data/equipos/${clubToSave.tla}.json`, JSON.stringify(clubToSave));
 }
 
 function updateClub(infoForUpdate, clubIdToUpdate) {
