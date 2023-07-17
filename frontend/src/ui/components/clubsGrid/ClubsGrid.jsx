@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { handleErrorInShieldImg } from '../../../utilities/utilities';
 import { ClubsColumns } from '../clubsColumns/ClubsColumns';
 
@@ -24,18 +25,17 @@ function ClubsGrid({ clubs }) {
               <span className="club__country col p-0">{ area.name }</span>
 
               <div className="actions col p-0">
-                <a target="_blank" href="/see">
+                <Link to={`/club/:${id}`}>
                   <img className="actions__see" src="./images/actions/see.png" alt="see" />
-                </a>
+                </Link>
 
-                <a target="_blank" href="/edit">
+                <Link to={`/form/edit/:${id}`}>
                   <img className="actions__edit" src="./images/actions/edit.png" alt="edit" />
-                </a>
+                </Link>
 
-                <a target="_blank" href="/delete">
+                <Link to={}>
                   <img className="actions__delete" src="./images/actions/delete.png" alt="delete" />
-                </a>
-
+                </Link>
               </div>
 
             </div>
