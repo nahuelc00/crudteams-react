@@ -2,6 +2,9 @@ const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const multer = require('multer');
+
+const upload = multer({ dest: 'clubsImages/files' });
 
 const PORT = 8080;
 const PATH_DB = './data/equipos.json';
@@ -10,18 +13,21 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static('clubsImages'));
 
 function getClubs() {
   const clubs = JSON.parse(fs.readFileSync(PATH_DB));
   return clubs;
 }
 
-function saveClub(newClub) {
+function saveClub(newClub, shieldImgFile) {
   const clubs = getClubs();
 
   const lastClub = clubs[clubs.length - 1];
   // eslint-disable-next-line no-param-reassign
   newClub.id = lastClub.id + 1;
+  // eslint-disable-next-line no-param-reassign
+  newClub.crestUrl = `http://localhost:8080/files/${shieldImgFile.filename}`;
 
   clubs.push(newClub);
   fs.writeFileSync(PATH_DB, JSON.stringify(clubs));
@@ -82,9 +88,11 @@ app.get('/club/:id', (req, res) => {
   }
 });
 
-app.post('/clubs', (req, res) => {
+app.post('/clubs', upload.single('shieldImg'), (req, res) => {
   const club = req.body;
-  saveClub(club);
+  const imgFile = req.file;
+
+  saveClub(club, imgFile);
 
   res.statusCode = 201;
   res.send(club);
