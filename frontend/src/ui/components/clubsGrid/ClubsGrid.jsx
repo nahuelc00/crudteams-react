@@ -25,11 +25,11 @@ function ClubsGrid({ clubs }) {
               <span className="club__country col p-0">{ area.name }</span>
 
               <div className="actions col p-0">
-                <Link to={`/club/:${id}`}>
+                <Link to={`/club/${id}`}>
                   <img className="actions__see" src="./images/actions/see.png" alt="see" />
                 </Link>
 
-                <Link to={`/form/edit/:${id}`}>
+                <Link to={`/form/edit/${id}`}>
                   <img className="actions__edit" src="./images/actions/edit.png" alt="edit" />
                 </Link>
 
