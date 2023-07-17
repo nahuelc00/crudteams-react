@@ -33,7 +33,7 @@ function ClubsGrid({ clubs }) {
                   <img className="actions__edit" src="./images/actions/edit.png" alt="edit" />
                 </Link>
 
-                <Link to={}>
+                <Link>
                   <img className="actions__delete" src="./images/actions/delete.png" alt="delete" />
                 </Link>
               </div>
