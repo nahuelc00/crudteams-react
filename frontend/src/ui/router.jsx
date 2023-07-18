@@ -1,13 +1,14 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { Root, Form } from './pages';
+import { Root, Form, Club } from './pages';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
   },
+
   {
     path: '/clubs',
     element: <Root />,
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
     path: '/form/add',
     element: <Form />,
   },
+  {
+    path: '/club/:id',
+    element: <Club />,
+  },
+
 ]);
 
 export { router };
