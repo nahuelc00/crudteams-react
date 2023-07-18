@@ -3,14 +3,8 @@
 /* eslint-disable no-restricted-syntax */
 
 import React, { useState } from 'react';
-import { Modal } from '..';
-
-function sendClub(clubFormData) {
-  return fetch('http://localhost:8080/clubs', {
-    method: 'POST',
-    body: clubFormData,
-  });
-}
+import { ModalSavedClub } from '..';
+import { sendClub } from '../../../services/clubs';
 
 function ClubForm() {
   const [inputsValue, setInputsValue] = useState({
@@ -93,7 +87,7 @@ function ClubForm() {
 
   return viewModal
     ? (
-      <Modal
+      <ModalSavedClub
         title="Club saved"
         description="The club has been saved successfully"
         exitRoute="/"

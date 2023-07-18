@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Modal({ title, description, exitRoute }) {
+function ModalSavedClub({ title, description, exitRoute }) {
   const navigate = useNavigate();
 
   function handleOnClick() {
@@ -27,4 +27,4 @@ function Modal({ title, description, exitRoute }) {
   );
 }
 
-export { Modal };
+export { ModalSavedClub };
