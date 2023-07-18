@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { getClub } from '../services/clubs';
-import { getClubIdFromPath } from '../utilities/utilities';
 
-function useSetClub() {
+function useGetClub() {
   const [club, setClub] = useState({});
+  const { id } = useParams();
 
   useEffect(() => {
-    const clubId = getClubIdFromPath();
+    const clubId = Number(id);
     getClub(clubId).then((clubData) => {
       const newClub = { ...clubData };
       setClub(newClub);
@@ -16,4 +17,4 @@ function useSetClub() {
   return { club };
 }
 
-export { useSetClub };
+export { useGetClub };
