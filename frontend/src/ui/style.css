@@ -14,6 +14,8 @@ body {
   }
 }
 
+/* Page root */
+
 .col-teams,
 .col-countries,
 .col-actions,
@@ -103,7 +105,82 @@ body {
   }
 }
 
+/* Page form */
+
 .club-form__fieldset {
   margin: 0 0 10px 0;
   height: 100px;
+}
+
+/* Page club */
+
+.cross-close {
+  width: 24px;
+  height: 24px;
+}
+@media (min-width: 320px) {
+  .cross-close {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.club-page__shield-img {
+  width: 70px;
+  height: 70px;
+}
+@media (min-width: 320px) {
+  .club-page__shield-img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.club-page__container-club-data {
+  max-width: 450px;
+  font-size: 13px;
+}
+@media (min-width: 320px) {
+  .club-page__container-club-data {
+    font-size: 16px;
+  }
+}
+
+.club-page__address {
+  font-size: 13px;
+}
+@media (min-width: 320px) {
+  .club-page__address {
+    font-size: 16px;
+  }
+}
+
+.club-page__map {
+  width: 200px;
+  height: 120px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+@media (min-width: 320px) {
+  .club-page__map {
+    width: 250px;
+    height: 140px;
+  }
+}
+@media (min-width: 600px) {
+  .club-page__map {
+    width: 350px;
+    height: 180px;
+  }
+}
+
+.club-page__edit-club,
+.club-page__delete-club {
+  font-size: 13px;
+}
+@media (min-width: 320px) {
+  .club-page__edit-club,
+  .club-page__delete-club {
+    font-size: 16px;
+  }
 }
