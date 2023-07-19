@@ -13,7 +13,7 @@ function ClubsGrid({ clubs }) {
           shortName, crestUrl, id, area,
         }) => (
 
-          <div id={id} key={id} className="container club text-center p-0">
+          <div key={id} className="container club text-center p-0">
 
             <div className="row m-0 d-flex align-items-center">
 
