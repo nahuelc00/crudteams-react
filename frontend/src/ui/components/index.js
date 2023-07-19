@@ -7,3 +7,4 @@ export * from './modalSavedClub/ModalSavedClub';
 export * from './clubForm/ClubForm';
 export * from './crossClose/CrossClose';
 export * from './clubRowInfo/ClubRowInfo';
+export * from './modalDeleteClub/ModalDeleteClub';
