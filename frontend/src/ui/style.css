@@ -46,6 +46,15 @@ body {
   }
 }
 
+.add-club{
+  font-size: 12px;
+}
+@media (min-width: 320px) {
+  .add-club{
+    font-size: 16px;
+  }
+}
+
 .container-shield-name {
   display: grid;
   justify-items: center;
@@ -106,6 +115,11 @@ body {
 }
 
 /* Page form */
+
+.club-form{
+  max-width: 500px;
+  margin: 0 auto;
+}
 
 .club-form__fieldset {
   margin: 0 0 10px 0;
