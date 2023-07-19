@@ -4,6 +4,8 @@ import { getClub } from '../services/clubs';
 
 function useGetClub() {
   const [club, setClub] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -11,10 +13,11 @@ function useGetClub() {
     getClub(clubId).then((clubData) => {
       const newClub = { ...clubData };
       setClub(newClub);
+      setIsLoading(false);
     });
   }, []);
 
-  return { club };
+  return { club, isLoading };
 }
 
 export { useGetClub };
