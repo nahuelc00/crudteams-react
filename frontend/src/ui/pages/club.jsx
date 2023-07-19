@@ -40,7 +40,7 @@ function Club() {
 
         <div className="d-flex justify-content-center gap-3">
           <Link to={`/form/edit/${club.id}`} className="btn btn-primary club-page__edit-club">Edit Club</Link>
-          <button type="button" className="btn btn-primary club-page__delete-club">Delete club</button>
+          <Link to={`/club/delete/${club.id}`} className="btn btn-primary club-page__delete-club">Delete club</Link>
         </div>
 
       </div>
