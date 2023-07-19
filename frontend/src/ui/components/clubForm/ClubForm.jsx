@@ -3,27 +3,23 @@
 /* eslint-disable no-restricted-syntax */
 
 import React, { useState } from 'react';
-import { ModalSavedClub } from '..';
-import { sendClub } from '../../../services/clubs';
 
-function ClubForm() {
+function ClubForm({ handleSaveClub }) {
   const [inputsValue, setInputsValue] = useState({
     name: null,
-    shortName: null,
-    tla: null,
+    address: null,
     nameArea: null,
     idArea: null,
-    address: null,
-    phone: null,
-    website: null,
+    clubColors: null,
     email: null,
     founded: null,
-    clubColors: null,
+    phone: null,
+    shortName: null,
+    tla: null,
     venue: null,
+    website: null,
     shieldImg: null,
   });
-
-  const [viewModal, setViewModal] = useState(false);
 
   function validateForm() {
     const copyOfInputs = { ...inputsValue };
@@ -32,25 +28,30 @@ function ClubForm() {
     for (const key in copyOfInputs) {
       const value = copyOfInputs[key];
 
-      if (value === null || value === '') counterErrors += 1;
-    }
+      const isValueNull = value === null;
+      const isValueEmpty = value === '';
 
-    if (counterErrors === 0) return true;
-
-    return false;
-  }
-
-  function setInputsWithError() {
-    const copyOfInputs = { ...inputsValue };
-
-    for (const key in copyOfInputs) {
-      const value = copyOfInputs[key];
-
-      if (value === null) {
+      if (isValueNull) {
         copyOfInputs[key] = '';
+        counterErrors += 1;
+      }
+
+      if (isValueEmpty) {
+        counterErrors += 1;
       }
     }
 
+    if (counterErrors === 0) {
+      return true;
+    }
+
+    setInputsValue(copyOfInputs);
+    return false;
+  }
+
+  function handleOnChange(event) {
+    const copyOfInputs = { ...inputsValue };
+    copyOfInputs[event.target.name] = event.target.value;
     setInputsValue(copyOfInputs);
   }
 
@@ -61,226 +62,197 @@ function ClubForm() {
 
     const isFormValid = validateForm();
 
-    if (isFormValid) {
-      sendClub(formData).then(() => {
-        setViewModal(true);
-      });
-    } else {
-      setInputsWithError();
-    }
+    if (isFormValid) handleSaveClub(formData);
   }
 
-  function handleOnChange(event) {
-    const copyOfInputs = { ...inputsValue };
-    copyOfInputs[event.target.name] = event.target.value;
-    setInputsValue(copyOfInputs);
-  }
+  return (
+    <form className="club-form mt-4" onSubmit={handleSubmit}>
 
-  function assignValidationClass(nameInput) {
-    if (inputsValue[nameInput] === '') {
-      return 'form-control is-invalid';
-    } if (inputsValue[nameInput] !== '' && inputsValue[nameInput] !== null) {
-      return 'form-control is-valid';
-    }
-    return 'form-control';
-  }
+      <fieldset className="club-form__fieldset">
+        <label className="form-label">Name:</label>
+        <input
+          onChange={handleOnChange}
+          className={`form-control ${inputsValue.name === '' ? 'is-invalid' : ''}`}
+          placeholder="Football Club Barcelona"
+          name="name"
+          type="text"
+        />
+        <div className="invalid-feedback">
+          Please type a club name
+        </div>
+      </fieldset>
 
-  return viewModal
-    ? (
-      <ModalSavedClub
-        title="Club saved"
-        description="The club has been saved successfully"
-        exitRoute="/"
-      />
-    )
-    : (
-      <form className="club-form" onSubmit={handleSubmit}>
+      <fieldset className="club-form__fieldset">
+        <label className="form-label">Shortname:</label>
+        <input
+          className={`form-control ${inputsValue.shortName === '' ? 'is-invalid' : ''}`}
+          placeholder="Barcelona"
+          name="shortName"
+          type="text"
+          onChange={handleOnChange}
+        />
+        <div className="invalid-feedback">
+          Please type a club shortname
+        </div>
+      </fieldset>
 
-        <fieldset className="club-form__fieldset">
-          <label className="form-label">Name:</label>
-          <input
-            onChange={handleOnChange}
-            className={assignValidationClass('name')}
-            placeholder="Football Club Barcelona"
-            name="name"
-            type="text"
-          />
-          <div className="invalid-feedback">
-            Please type a club name
-          </div>
-        </fieldset>
+      <fieldset className="club-form__fieldset">
+        <label className="form-label">Abbreviation:</label>
+        <input
+          onChange={handleOnChange}
+          className={`form-control ${inputsValue.tla === '' ? 'is-invalid' : ''}`}
+          placeholder="BAR"
+          name="tla"
+          type="text"
+        />
+        <div className="invalid-feedback">
+          Please type a club abbreviation
+        </div>
+      </fieldset>
 
-        <fieldset className="club-form__fieldset">
-          <label className="form-label">Shortname:</label>
-          <input
-            onChange={handleOnChange}
-            className={assignValidationClass('shortName')}
-            placeholder="Barcelona"
-            name="shortName"
-            type="text"
-          />
-          <div className="invalid-feedback">
-            Please type a club shortname
-          </div>
-        </fieldset>
+      <fieldset className="club-form__fieldset">
+        <label className="form-label">Name Area</label>
+        <input
+          onChange={handleOnChange}
+          className={`form-control ${inputsValue.nameArea === '' ? 'is-invalid' : ''}`}
+          placeholder="Spain"
+          name="nameArea"
+          type="text"
+        />
+        <div className="invalid-feedback">
+          Please type a area name of club
+        </div>
+      </fieldset>
 
-        <fieldset className="club-form__fieldset">
-          <label className="form-label">Abbreviation:</label>
-          <input
-            onChange={handleOnChange}
-            className={assignValidationClass('tla')}
-            placeholder="BAR"
-            name="tla"
-            type="text"
-          />
-          <div className="invalid-feedback">
-            Please type a club abbreviation
-          </div>
-        </fieldset>
+      <fieldset className="club-form__fieldset">
+        <label className="form-label">ID Area</label>
+        <input
+          onChange={handleOnChange}
+          className={`form-control ${inputsValue.idArea === '' ? 'is-invalid' : ''}`}
+          placeholder="2224"
+          name="idArea"
+          type="number"
+        />
+        <div className="invalid-feedback">
+          Please type a area id of club
+        </div>
+      </fieldset>
 
-        <fieldset className="club-form__fieldset">
-          <label className="form-label">Name Area</label>
-          <input
-            onChange={handleOnChange}
-            className={assignValidationClass('nameArea')}
-            placeholder="Spain"
-            name="nameArea"
-            type="text"
-          />
-          <div className="invalid-feedback">
-            Please type a area name of club
-          </div>
-        </fieldset>
+      <fieldset className="club-form__fieldset">
+        <label className="form-label">Address </label>
+        <input
+          onChange={handleOnChange}
+          className={`form-control ${inputsValue.address === '' ? 'is-invalid' : ''}`}
+          placeholder="C. d'Arístides Maillol, 12, 08028 Barcelona, España"
+          name="address"
+          type="text"
+        />
+        <div className="invalid-feedback">
+          Please type a club address
+        </div>
+      </fieldset>
 
-        <fieldset className="club-form__fieldset">
-          <label className="form-label">ID Area</label>
-          <input
-            onChange={handleOnChange}
-            className={assignValidationClass('idArea')}
-            placeholder="2224"
-            name="idArea"
-            type="number"
-          />
-          <div className="invalid-feedback">
-            Please type a area id of club
-          </div>
-        </fieldset>
+      <fieldset className="club-form__fieldset">
+        <label className="form-label">Phone </label>
+        <input
+          onChange={handleOnChange}
+          className={`form-control ${inputsValue.phone === '' ? 'is-invalid' : ''}`}
+          placeholder="902189900"
+          name="phone"
+          type="number"
+        />
+        <div className="invalid-feedback">
+          Please type a club phone
+        </div>
+      </fieldset>
 
-        <fieldset className="club-form__fieldset">
-          <label className="form-label">Address </label>
-          <input
-            onChange={handleOnChange}
-            className={assignValidationClass('address')}
-            placeholder="C. d'Arístides Maillol, 12, 08028 Barcelona, España"
-            name="address"
-            type="text"
-          />
-          <div className="invalid-feedback">
-            Please type a club address
-          </div>
-        </fieldset>
+      <fieldset className="club-form__fieldset">
+        <label className="form-label">Web</label>
+        <input
+          onChange={handleOnChange}
+          className={`form-control ${inputsValue.website === '' ? 'is-invalid' : ''}`}
+          placeholder="https:ww.fcbarcelona.es/"
+          name="website"
+          type="text"
+        />
+        <div className="invalid-feedback">
+          Please type a club website
+        </div>
+      </fieldset>
 
-        <fieldset className="club-form__fieldset">
-          <label className="form-label">Phone </label>
-          <input
-            onChange={handleOnChange}
-            className={assignValidationClass('phone')}
-            placeholder="902189900"
-            name="phone"
-            type="text"
-          />
-          <div className="invalid-feedback">
-            Please type a club phone
-          </div>
-        </fieldset>
+      <fieldset className="club-form__fieldset">
+        <label className="form-label">Email </label>
+        <input
+          onChange={handleOnChange}
+          className={`form-control ${inputsValue.email === '' ? 'is-invalid' : ''}`}
+          placeholder="oab@fcbarcelona.cat"
+          name="email"
+          type="email"
+        />
+        <div className="invalid-feedback">
+          Please type a club email
+        </div>
+      </fieldset>
 
-        <fieldset className="club-form__fieldset">
-          <label className="form-label">Web </label>
-          <input
-            onChange={handleOnChange}
-            className={assignValidationClass('website')}
-            placeholder="https://www.fcbarcelona.es/"
-            name="website"
-            type="text"
-          />
-          <div className="invalid-feedback">
-            Please type a club website
-          </div>
-        </fieldset>
+      <fieldset className="club-form__fieldset">
+        <label className="form-label">Founded </label>
+        <input
+          onChange={handleOnChange}
+          className={`form-control ${inputsValue.founded === '' ? 'is-invalid' : ''}`}
+          placeholder="1899"
+          name="founded"
+          type="number"
+        />
+        <div className="invalid-feedback">
+          Please type a club foundation date
+        </div>
+      </fieldset>
 
-        <fieldset className="club-form__fieldset">
-          <label className="form-label">Email </label>
-          <input
-            onChange={handleOnChange}
-            className={assignValidationClass('email')}
-            placeholder="oab@fcbarcelona.cat"
-            name="email"
-            type="email"
-          />
-          <div className="invalid-feedback">
-            Please type a club email
-          </div>
-        </fieldset>
+      <fieldset className="club-form__fieldset">
+        <label className="form-label">Colors </label>
+        <input
+          onChange={handleOnChange}
+          className={`form-control ${inputsValue.clubColors === '' ? 'is-invalid' : ''}`}
+          placeholder="Red / Blue"
+          name="clubColors"
+          type="text"
+        />
+        <div className="invalid-feedback">
+          Please type a colors of club
+        </div>
+      </fieldset>
 
-        <fieldset className="club-form__fieldset">
-          <label className="form-label">Founded </label>
-          <input
-            onChange={handleOnChange}
-            className={assignValidationClass('founded')}
-            placeholder="1899"
-            name="founded"
-            type="number"
-          />
-          <div className="invalid-feedback">
-            Please type a club foundation date
-          </div>
-        </fieldset>
+      <fieldset className="club-form__fieldset">
+        <label className="form-label">Stadium </label>
+        <input
+          onChange={handleOnChange}
+          className={`form-control ${inputsValue.venue === '' ? 'is-invalid' : ''}`}
+          placeholder="Camp Nou"
+          name="venue"
+          type="text"
+        />
+        <div className="invalid-feedback">
+          Please type the stadium of club
+        </div>
+      </fieldset>
 
-        <fieldset className="club-form__fieldset">
-          <label className="form-label">Colors </label>
-          <input
-            onChange={handleOnChange}
-            className={assignValidationClass('clubColors')}
-            placeholder="Red / Blue"
-            name="clubColors"
-            type="text"
-          />
-          <div className="invalid-feedback">
-            Please type a colors of club
-          </div>
-        </fieldset>
+      <fieldset className="club-form__fieldset">
+        <label className="form-label">Shield: </label>
+        <input
+          onChange={handleOnChange}
+          className={`form-control ${inputsValue.shieldImg === '' ? 'is-invalid' : ''}`}
+          name="shieldImg"
+          type="file"
+        />
+        <div className="invalid-feedback">
+          Please insert the shield image of club
+        </div>
+      </fieldset>
 
-        <fieldset className="club-form__fieldset">
-          <label className="form-label">Stadium </label>
-          <input
-            onChange={handleOnChange}
-            className={assignValidationClass('venue')}
-            placeholder="Camp Nou"
-            name="venue"
-            type="text"
-          />
-          <div className="invalid-feedback">
-            Please type the stadium of club
-          </div>
-        </fieldset>
+      <button className="btn btn-primary" type="submit">Save club</button>
 
-        <fieldset className="club-form__fieldset">
-          <label className="form-label">Shield: </label>
-          <input
-            onChange={handleOnChange}
-            className={assignValidationClass('shieldImg')}
-            name="shieldImg"
-            type="file"
-          />
-          <div className="invalid-feedback">
-            Please insert the shield image of club
-          </div>
-        </fieldset>
-
-        <button className="btn btn-primary" type="submit">Save club</button>
-
-      </form>
-    );
+    </form>
+  );
 }
 
 export { ClubForm };
