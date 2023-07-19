@@ -127,6 +127,13 @@ body {
 
 /* Page club */
 
+.club-page-loader-container {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
 .cross-close {
   width: 24px;
   height: 24px;

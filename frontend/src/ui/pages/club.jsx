@@ -9,7 +9,7 @@ function Club() {
   return (
     isLoading
       ? (
-        <div className="vh-100 d-flex justify-content-center align-items-center">
+        <div className="club-page-loader-container">
           <Loader />
         </div>
       )
