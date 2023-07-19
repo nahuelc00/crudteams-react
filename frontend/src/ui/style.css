@@ -46,11 +46,11 @@ body {
   }
 }
 
-.add-club{
+.add-club {
   font-size: 12px;
 }
 @media (min-width: 320px) {
-  .add-club{
+  .add-club {
     font-size: 16px;
   }
 }
@@ -110,13 +110,12 @@ body {
   .actions__delete {
     width: 30px;
     height: 30px;
-    padding: 2px;
   }
 }
 
 /* Page form */
 
-.club-form{
+.club-form {
   max-width: 500px;
   margin: 0 auto;
 }
