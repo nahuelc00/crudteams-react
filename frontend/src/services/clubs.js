@@ -22,4 +22,6 @@ function deleteClub(clubId) {
   });
 }
 
-export { getClubs, getClub, sendClub };
+export {
+  getClubs, getClub, sendClub, deleteClub,
+};
