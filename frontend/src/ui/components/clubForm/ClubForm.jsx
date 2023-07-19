@@ -1,6 +1,4 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable guard-for-in */
-/* eslint-disable no-restricted-syntax */
 
 import React, { useState } from 'react';
 
@@ -159,7 +157,7 @@ function ClubForm({ handleSaveClub }) {
           className={`form-control ${inputsValue.phone === '' ? 'is-invalid' : ''}`}
           placeholder="902189900"
           name="phone"
-          type="number"
+          type="text"
         />
         <div className="invalid-feedback">
           Please type a club phone
