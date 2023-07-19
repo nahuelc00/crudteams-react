@@ -1,7 +1,9 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { Root, Form, Club } from './pages';
+import {
+  Root, Form, Club, Delete,
+} from './pages';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: '/club/:id',
     element: <Club />,
+  },
+  {
+    path: '/club/delete/:id',
+    element: <Delete />,
   },
 
 ]);

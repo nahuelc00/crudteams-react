@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ModalDeleteClub({ handleCloseModal, handleDeleteClub }) {
+function ModalDeleteClub({ handleCloseModal, handleConfirmationModal }) {
   return (
     <div className="modal d-block" tabIndex="-1">
       <div className="modal-dialog">
@@ -13,7 +13,7 @@ function ModalDeleteClub({ handleCloseModal, handleDeleteClub }) {
           </div>
           <div className="modal-footer">
             <button onClick={handleCloseModal} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button onClick={handleDeleteClub} type="button" className="btn btn-danger">Delete club</button>
+            <button onClick={handleConfirmationModal} type="button" className="btn btn-danger">Delete club</button>
           </div>
         </div>
       </div>
