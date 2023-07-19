@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { handleErrorInShieldImg } from '../../../utilities/utilities';
-import { ClubsColumns } from '../clubsColumns/ClubsColumns';
+import { ClubsColumns } from '..';
 
 function ClubsGrid({ clubs }) {
   return (
@@ -9,11 +9,11 @@ function ClubsGrid({ clubs }) {
       <ClubsColumns />
 
       <div className="d-grid gap-3">
-
         { clubs.map(({
           shortName, crestUrl, id, area,
         }) => (
-          <div key={id} className="container club text-center p-0">
+
+          <div id={id} key={id} className="container club text-center p-0">
 
             <div className="row m-0 d-flex align-items-center">
 
@@ -33,7 +33,7 @@ function ClubsGrid({ clubs }) {
                   <img className="actions__edit" src="./images/actions/edit.png" alt="edit" />
                 </Link>
 
-                <Link>
+                <Link to={`/club/delete/${id}`}>
                   <img className="actions__delete" src="./images/actions/delete.png" alt="delete" />
                 </Link>
               </div>
