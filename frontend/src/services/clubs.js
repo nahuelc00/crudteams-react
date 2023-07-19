@@ -16,4 +16,10 @@ function sendClub(clubFormData) {
   });
 }
 
+function deleteClub(clubId) {
+  return fetch(`http://localhost:8080/club/${clubId}`, {
+    method: 'delete',
+  });
+}
+
 export { getClubs, getClub, sendClub };
