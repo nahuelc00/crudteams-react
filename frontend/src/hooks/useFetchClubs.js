@@ -6,10 +6,12 @@ function useFetchClubs() {
   const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
-    getClubs().then((clubs) => {
-      setClubs(clubs);
-      setisLoading(false);
-    });
+    setTimeout(() => {
+      getClubs().then((clubs) => {
+        setClubs(clubs);
+        setisLoading(false);
+      });
+    }, 500);
   }, []);
 
   return { clubs, isLoading };
