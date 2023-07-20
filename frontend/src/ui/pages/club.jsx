@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CrossClose, ClubRowInfo, Loader } from '../components';
 import { useGetClub } from '../../hooks/useGetClub';
+import { handleErrorInShieldImg } from '../../utilities/utilities';
 
 function Club() {
   const { club, isLoading } = useGetClub();
@@ -19,7 +20,7 @@ function Club() {
 
           <div className="club-page container text-center p-0">
 
-            <img className="club-page__shield-img" src={club.crestUrl} alt={club.shortName} />
+            <img onError={handleErrorInShieldImg} className="club-page__shield-img" src={club.crestUrl} alt={club.shortName} />
             <h1 className="mb-5">{ club.shortName }</h1>
 
             <div className="container p-0 d-grid mb-5 gap-1 club-page__container-club-data">
