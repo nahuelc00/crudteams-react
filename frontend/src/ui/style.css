@@ -120,9 +120,27 @@ body {
   margin: 0 auto;
 }
 
+@media (min-width: 600px) {
+  .club-form {
+    max-width: initial;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+}
+
 .club-form__fieldset {
   margin: 0 0 10px 0;
   height: 100px;
+}
+
+@media (min-width: 600px) {
+  .club-form__container-button {
+    height: 100px;
+    display: flex;
+    align-items: center;
+  }
 }
 
 /* Page club */

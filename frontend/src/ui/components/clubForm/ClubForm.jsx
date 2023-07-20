@@ -292,7 +292,9 @@ function ClubForm({ handleSaveClub }) {
         </div>
       </fieldset>
 
-      <button className="btn btn-primary" type="submit">Save club</button>
+      <div className="club-form__container-button">
+        <button className="btn btn-primary" type="submit">Save club</button>
+      </div>
 
     </form>
   );
