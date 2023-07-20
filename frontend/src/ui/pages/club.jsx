@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { getMapsKey } from '../../env';
+import { getGoogleMapsKey } from '../../env';
 
 import { useGetClub } from '../../hooks/useGetClub';
 
@@ -9,7 +9,7 @@ import { handleErrorInShieldImg } from '../../utilities/utilities';
 
 import { CrossClose, ClubRowInfo, Loader } from '../components';
 
-const MAPS_KEY = getMapsKey();
+const GOOGLE_MAPS_KEY = getGoogleMapsKey();
 
 function Club() {
   const { club, isLoading } = useGetClub();
@@ -49,7 +49,7 @@ function Club() {
                 className="club-page__map mb-5"
                 title="address-club"
                 referrerPolicy="no-referrer-when-downgrade"
-                src={`https://www.google.com/maps/embed/v1/place?q=${club.address}&key=${MAPS_KEY}`}
+                src={`https://www.google.com/maps/embed/v1/place?q=${club.address}&key=${GOOGLE_MAPS_KEY}`}
               />
             </div>
 

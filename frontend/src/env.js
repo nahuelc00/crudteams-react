@@ -1,6 +1,6 @@
-function getMapsKey() {
-  const MAPS_KEY = import.meta.env.VITE_MAPS_KEY;
-  return MAPS_KEY;
+function getGoogleMapsKey() {
+  const GOOGLE_MAPS_KEY = import.meta.env.VITE_GOOGLE_MAPS_KEY;
+  return GOOGLE_MAPS_KEY;
 }
 
 function getHostApi() {
@@ -8,4 +8,4 @@ function getHostApi() {
   return API_HOST;
 }
 
-export { getMapsKey, getHostApi };
+export { getGoogleMapsKey, getHostApi };
