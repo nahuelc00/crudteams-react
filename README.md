@@ -20,7 +20,7 @@ npm install
 npm run serve
 ```  
 
-2. In other tab or terminal, enter in the frontend folder and run:
+3. In other tab or terminal, enter in the frontend folder and run:
 
 ```
 npm install
