@@ -7,7 +7,7 @@ import { sendClub } from '../../services/clubs';
 function Form() {
   const [viewModal, setViewModal] = useState(false);
 
-  function handleSaveClub(clubFormData) {
+  function handleSaveClub(id, clubFormData) {
     sendClub(clubFormData).then(setViewModal(true));
   }
 
