@@ -96,7 +96,7 @@ function ClubForm({ handleSaveClub }) {
     <form className="club-form mt-4" onSubmit={handleSubmit}>
 
       <fieldset className="club-form__fieldset">
-        <label className="form-label">Name:</label>
+        <label className="form-label">Name</label>
         <input
           onChange={handleOnChange}
           className={`form-control ${inputsValue.name === '' ? 'is-invalid' : ''}`}
@@ -111,7 +111,7 @@ function ClubForm({ handleSaveClub }) {
       </fieldset>
 
       <fieldset className="club-form__fieldset">
-        <label className="form-label">Shortname:</label>
+        <label className="form-label">Shortname</label>
         <input
           className={`form-control ${inputsValue.shortName === '' ? 'is-invalid' : ''}`}
           placeholder="Barcelona"
@@ -126,7 +126,7 @@ function ClubForm({ handleSaveClub }) {
       </fieldset>
 
       <fieldset className="club-form__fieldset">
-        <label className="form-label">Abbreviation:</label>
+        <label className="form-label">Abbreviation</label>
         <input
           onChange={handleOnChange}
           className={`form-control ${inputsValue.tla === '' ? 'is-invalid' : ''}`}
@@ -171,7 +171,7 @@ function ClubForm({ handleSaveClub }) {
       </fieldset>
 
       <fieldset className="club-form__fieldset">
-        <label className="form-label">Address </label>
+        <label className="form-label">Address</label>
         <input
           onChange={handleOnChange}
           className={`form-control ${inputsValue.address === '' ? 'is-invalid' : ''}`}
@@ -280,7 +280,7 @@ function ClubForm({ handleSaveClub }) {
       </fieldset>
 
       <fieldset className="club-form__fieldset">
-        <label className="form-label">Shield: </label>
+        <label className="form-label">Shield</label>
         <input
           onChange={handleOnChange}
           className={`form-control ${inputsValue.shieldImg === '' ? 'is-invalid' : ''}`}
