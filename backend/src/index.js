@@ -46,12 +46,17 @@ function saveClub(newClub, shieldImgFile) {
   fs.writeFileSync(`./data/equipos/${clubToSave.tla}.json`, JSON.stringify(clubToSave));
 }
 
-function updateClub(infoForUpdate, clubIdToUpdate) {
+function updateClub(infoForUpdate, shieldImgFile, clubIdToUpdate) {
   const clubs = getClubs();
 
   const positionOfClubToUpdate = clubs.findIndex((club) => club.id === clubIdToUpdate);
 
-  clubs[positionOfClubToUpdate] = { ...clubs[positionOfClubToUpdate], ...infoForUpdate };
+  clubs[positionOfClubToUpdate] = {
+    ...clubs[positionOfClubToUpdate],
+    ...infoForUpdate,
+    crestUrl: `http://localhost:8080/files/${shieldImgFile.filename}`,
+    lastUpdated: new Date().toISOString(),
+  };
 
   fs.writeFileSync(PATH_DB, JSON.stringify(clubs));
   fs.writeFileSync(`./data/equipos/${clubs[positionOfClubToUpdate].tla}.json`, JSON.stringify(clubs[positionOfClubToUpdate]));
@@ -110,11 +115,14 @@ app.post('/clubs', upload.single('shieldImg'), (req, res) => {
   res.send(club);
 });
 
-app.put('/club/:id', (req, res) => {
+app.put('/club/:id', upload.single('shieldImg'), (req, res) => {
   const clubIdToUpdate = Number(req.params.id);
+
   const infoForUpdate = req.body;
 
-  const updatedClub = updateClub(infoForUpdate, clubIdToUpdate);
+  const shieldImgFile = req.file;
+
+  const updatedClub = updateClub(infoForUpdate, shieldImgFile, clubIdToUpdate);
 
   res.statusCode = 200;
   res.send(updatedClub);
