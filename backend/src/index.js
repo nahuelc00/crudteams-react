@@ -1,3 +1,8 @@
+require('dotenv').config();
+
+const PORT = process.env.PORT || 8080;
+const { PATH_DB } = process.env;
+
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
@@ -5,9 +10,6 @@ const cors = require('cors');
 const multer = require('multer');
 
 const upload = multer({ dest: 'clubsImages/files' });
-
-const PORT = 8080;
-const PATH_DB = './data/equipos.json';
 
 const app = express();
 
