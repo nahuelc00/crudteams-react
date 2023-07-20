@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const PORT = process.env.PORT || 8080;
+const HOSTNAME = process.env.HOSTNAME || 'localhost';
 const { PATH_DB } = process.env;
 
 const express = require('express');
@@ -139,6 +140,6 @@ app.delete('/club/:id', (req, res) => {
   res.send(clubDeleted);
 });
 
-app.listen(PORT, () => {
-  console.log(`Listen port ${PORT} in localhost`);
+app.listen(PORT, HOSTNAME, () => {
+  console.log(`Listen port in ${HOSTNAME}:${PORT} `);
 });
