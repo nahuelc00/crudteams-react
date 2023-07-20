@@ -24,5 +24,5 @@ npm run serve
 
 ```
 npm install
-VITE_GOOGLE_MAPS_KEY=${YOUR KEY} npm run dev
+VITE_GOOGLE_MAPS_KEY=YOUR KEY npm run dev
 ```  
