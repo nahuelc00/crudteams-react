@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { useState } from 'react';
+import { ScrollRestoration } from 'react-router-dom';
 import { ClubForm, ModalSavedClub, CrossClose } from '../components';
 
 function EditForm() {
@@ -21,6 +22,7 @@ function EditForm() {
   )
     : (
       <>
+        <ScrollRestoration />
         <CrossClose exitRoute="/" />
         <ClubForm handleSaveClub={handleSaveClub} />
       </>
