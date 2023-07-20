@@ -1,8 +1,14 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getClub } from '../../../services/clubs';
 
 function ClubForm({ handleSaveClub }) {
+  const { id } = useParams();
+
   const [inputsValue, setInputsValue] = useState({
     name: null,
     address: null,
@@ -19,8 +25,31 @@ function ClubForm({ handleSaveClub }) {
     shieldImg: null,
   });
 
+  useEffect(() => {
+    if (id !== undefined) {
+      getClub(id).then((clubData) => {
+        setInputsValue({
+          name: clubData.name,
+          address: clubData.address,
+          nameArea: clubData.area.name,
+          idArea: clubData.area.id,
+          clubColors: clubData.clubColors,
+          email: clubData.email,
+          founded: clubData.founded,
+          phone: clubData.phone,
+          shortName: clubData.shortName,
+          tla: clubData.tla,
+          venue: clubData.venue,
+          website: clubData.website,
+          shieldImg: null,
+        });
+      });
+    }
+  }, []);
+
   function validateForm() {
     const copyOfInputs = { ...inputsValue };
+
     let counterErrors = 0;
 
     for (const key in copyOfInputs) {
@@ -60,7 +89,7 @@ function ClubForm({ handleSaveClub }) {
 
     const isFormValid = validateForm();
 
-    if (isFormValid) handleSaveClub(formData);
+    if (isFormValid) handleSaveClub(id, formData);
   }
 
   return (
@@ -74,6 +103,7 @@ function ClubForm({ handleSaveClub }) {
           placeholder="Football Club Barcelona"
           name="name"
           type="text"
+          defaultValue={inputsValue.name}
         />
         <div className="invalid-feedback">
           Please type a club name
@@ -88,6 +118,7 @@ function ClubForm({ handleSaveClub }) {
           name="shortName"
           type="text"
           onChange={handleOnChange}
+          defaultValue={inputsValue.shortName}
         />
         <div className="invalid-feedback">
           Please type a club shortname
@@ -102,6 +133,7 @@ function ClubForm({ handleSaveClub }) {
           placeholder="BAR"
           name="tla"
           type="text"
+          defaultValue={inputsValue.tla}
         />
         <div className="invalid-feedback">
           Please type a club abbreviation
@@ -116,6 +148,7 @@ function ClubForm({ handleSaveClub }) {
           placeholder="Spain"
           name="nameArea"
           type="text"
+          defaultValue={inputsValue.nameArea}
         />
         <div className="invalid-feedback">
           Please type a area name of club
@@ -130,6 +163,7 @@ function ClubForm({ handleSaveClub }) {
           placeholder="2224"
           name="idArea"
           type="number"
+          defaultValue={inputsValue.idArea}
         />
         <div className="invalid-feedback">
           Please type a area id of club
@@ -144,6 +178,7 @@ function ClubForm({ handleSaveClub }) {
           placeholder="C. d'Arístides Maillol, 12, 08028 Barcelona, España"
           name="address"
           type="text"
+          defaultValue={inputsValue.address}
         />
         <div className="invalid-feedback">
           Please type a club address
@@ -158,6 +193,7 @@ function ClubForm({ handleSaveClub }) {
           placeholder="902189900"
           name="phone"
           type="text"
+          defaultValue={inputsValue.phone}
         />
         <div className="invalid-feedback">
           Please type a club phone
@@ -172,6 +208,7 @@ function ClubForm({ handleSaveClub }) {
           placeholder="https:ww.fcbarcelona.es/"
           name="website"
           type="text"
+          defaultValue={inputsValue.website}
         />
         <div className="invalid-feedback">
           Please type a club website
@@ -186,6 +223,8 @@ function ClubForm({ handleSaveClub }) {
           placeholder="oab@fcbarcelona.cat"
           name="email"
           type="email"
+          defaultValue={inputsValue.email}
+
         />
         <div className="invalid-feedback">
           Please type a club email
@@ -200,6 +239,8 @@ function ClubForm({ handleSaveClub }) {
           placeholder="1899"
           name="founded"
           type="number"
+          defaultValue={inputsValue.founded}
+
         />
         <div className="invalid-feedback">
           Please type a club foundation date
@@ -214,6 +255,8 @@ function ClubForm({ handleSaveClub }) {
           placeholder="Red / Blue"
           name="clubColors"
           type="text"
+          defaultValue={inputsValue.clubColors}
+
         />
         <div className="invalid-feedback">
           Please type a colors of club
@@ -228,6 +271,8 @@ function ClubForm({ handleSaveClub }) {
           placeholder="Camp Nou"
           name="venue"
           type="text"
+          defaultValue={inputsValue.venue}
+
         />
         <div className="invalid-feedback">
           Please type the stadium of club
