@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const PORT = process.env.PORT || 8080;
 const HOSTNAME = process.env.HOSTNAME || 'localhost';
-const { PATH_DB } = process.env;
+const { PATH_TEAMS_DB, PATH_TEAM_DB } = process.env;
 
 const express = require('express');
 const fs = require('fs');
@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(express.static('clubsImages'));
 
 function getClubs() {
-  const clubs = JSON.parse(fs.readFileSync(PATH_DB));
+  const clubs = JSON.parse(fs.readFileSync(PATH_TEAMS_DB));
   return clubs;
 }
 
@@ -33,7 +33,7 @@ function saveClub(newClub, shieldImgFile) {
     name: newClub.name,
     shortName: newClub.shortName,
     tla: newClub.tla,
-    crestUrl: `http://localhost:8080/files/${shieldImgFile.filename}`,
+    crestUrl: `http://${HOSTNAME}:${PORT}/files/${shieldImgFile.filename}`,
     address: newClub.address,
     phone: newClub.phone,
     website: newClub.website,
@@ -45,8 +45,8 @@ function saveClub(newClub, shieldImgFile) {
 
   clubs.push(clubToSave);
 
-  fs.writeFileSync(PATH_DB, JSON.stringify(clubs));
-  fs.writeFileSync(`./data/equipos/${clubToSave.tla}.json`, JSON.stringify(clubToSave));
+  fs.writeFileSync(PATH_TEAMS_DB, JSON.stringify(clubs));
+  fs.writeFileSync(`${PATH_TEAM_DB}/${clubToSave.tla}.json`, JSON.stringify(clubToSave));
 }
 
 function updateClub(infoForUpdate, shieldImgFile, clubIdToUpdate) {
@@ -57,12 +57,12 @@ function updateClub(infoForUpdate, shieldImgFile, clubIdToUpdate) {
   clubs[positionOfClubToUpdate] = {
     ...clubs[positionOfClubToUpdate],
     ...infoForUpdate,
-    crestUrl: `http://localhost:8080/files/${shieldImgFile.filename}`,
+    crestUrl: `http://${HOSTNAME}:${PORT}/files/${shieldImgFile.filename}`,
     lastUpdated: new Date().toISOString(),
   };
 
-  fs.writeFileSync(PATH_DB, JSON.stringify(clubs));
-  fs.writeFileSync(`./data/equipos/${clubs[positionOfClubToUpdate].tla}.json`, JSON.stringify(clubs[positionOfClubToUpdate]));
+  fs.writeFileSync(PATH_TEAMS_DB, JSON.stringify(clubs));
+  fs.writeFileSync(`${PATH_TEAM_DB}/${clubs[positionOfClubToUpdate].tla}.json`, JSON.stringify(clubs[positionOfClubToUpdate]));
 
   return clubs[positionOfClubToUpdate];
 }
@@ -74,8 +74,8 @@ function deleteClub(clubIdToDelete) {
 
   clubs.splice(positionOfClubToDelete, 1);
 
-  fs.unlinkSync(`./data/equipos/${clubToRemove.tla}.json`);
-  fs.writeFileSync(PATH_DB, JSON.stringify(clubs));
+  fs.unlinkSync(`${PATH_TEAM_DB}/${clubToRemove.tla}.json`);
+  fs.writeFileSync(PATH_TEAMS_DB, JSON.stringify(clubs));
 
   return clubToRemove;
 }
