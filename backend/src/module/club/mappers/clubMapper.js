@@ -12,13 +12,13 @@ function mapClub(club) {
     tla: newClub.tla,
     crestUrl: newClub.crestUrl,
     address: newClub.address,
-    phone: newClub.phone || '----',
+    phone: newClub.phone,
     website: newClub.website,
-    email: newClub.email || '----',
+    email: newClub.email,
     founded: newClub.founded,
     clubColors: newClub.clubColors,
     venue: newClub.venue,
-    lastUpdated: newClub.lastUpdated || '',
+    lastUpdated: newClub.lastUpdated,
   };
 
   return clubMapped;
