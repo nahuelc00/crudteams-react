@@ -31,8 +31,8 @@ function Club() {
             <h1 className="mb-5">{ club.shortName }</h1>
 
             <div className="container p-0 d-grid mb-5 gap-1 club-page__container-club-data">
-              <ClubRowInfo description="Area Name" value={club.area?.name} />
-              <ClubRowInfo description="Area Id" value={club.area?.id} />
+              <ClubRowInfo description="Area Name" value={club.nameArea} />
+              <ClubRowInfo description="Area Id" value={club.idArea} />
               <ClubRowInfo description="Name" value={club.name} />
               <ClubRowInfo description="Abbreviation" value={club.tla} />
               <ClubRowInfo description="Phone" value={club.phone} />

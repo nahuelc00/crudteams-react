@@ -31,8 +31,8 @@ function ClubForm({ handleSaveClub }) {
         setInputsValue({
           name: clubData.name,
           address: clubData.address,
-          nameArea: clubData.area.name,
-          idArea: clubData.area.id,
+          nameArea: clubData.nameArea,
+          idArea: clubData.idArea,
           clubColors: clubData.clubColors,
           email: clubData.email,
           founded: clubData.founded,
