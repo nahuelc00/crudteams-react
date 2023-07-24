@@ -9,6 +9,7 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
+const mapClub = require('./module/club/mappers/clubMapper');
 
 const upload = multer({ dest: 'clubsImages/files' });
 
@@ -98,13 +99,14 @@ app.get('/club/:id', (req, res) => {
   const clubs = getClubs();
 
   const clubSearched = clubs.find((club) => club.id === clubId);
+  const club = mapClub(clubSearched);
 
   if (clubSearched === undefined) {
     res.statusCode = 204;
     res.end();
   } else {
     res.statusCode = 200;
-    res.send(clubSearched);
+    res.send(club);
   }
 });
 
