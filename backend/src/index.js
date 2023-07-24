@@ -9,7 +9,7 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
-const mapClub = require('./module/club/mappers/clubMapper');
+const mapClub = require('./module/club/mapper/clubMapper');
 
 const upload = multer({ dest: 'clubsImages/files' });
 
