@@ -1,7 +1,5 @@
 const mapClub = require('../mapper/clubMapper');
 
-// Should return mapped entity
-
 class ClubService {
   constructor(clubRepository) {
     this.clubRepository = clubRepository;

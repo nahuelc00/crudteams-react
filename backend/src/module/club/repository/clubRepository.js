@@ -2,8 +2,6 @@
 
 const Club = require('../entity/club');
 
-// Should return pure entity
-
 class ClubRepository {
   constructor(fs, PATH_TEAMS_DB, PATH_TEAM_DB) {
     this.fs = fs;
