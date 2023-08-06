@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 
-const mapClub = require('../mapper/clubMapper');
 const { getPortAndHostname } = require('../../../env');
+const Club = require('../entity/club');
 
 const { PORT, HOSTNAME } = getPortAndHostname();
 
@@ -30,8 +30,7 @@ class ClubController {
   getClub(req, res) {
     const clubId = Number(req.params.id);
 
-    const clubSearched = this.clubService.getClub(clubId);
-    const club = mapClub(clubSearched);
+    const club = this.clubService.getClub(clubId);
 
     res.statusCode = 200;
     res.send(club);
@@ -44,7 +43,7 @@ class ClubController {
     const clubs = this.clubService.getClubs();
     const lastClub = clubs[clubs.length - 1];
 
-    const clubToSave = {
+    const clubToSave = new Club({
       id: lastClub.id + 1,
       area: { name: club.nameArea, id: Number(club.idArea) },
       name: club.name,
@@ -58,12 +57,12 @@ class ClubController {
       founded: Number(club.founded),
       clubColors: club.clubColors,
       venue: club.venue,
-    };
+    });
 
     this.clubService.saveClub(clubToSave);
 
     res.statusCode = 201;
-    res.send(club);
+    res.send(clubToSave);
   }
 
   updateClub(req, res) {
@@ -73,7 +72,7 @@ class ClubController {
 
     const shieldImgFile = req.file;
 
-    const clubUpdated = {
+    const clubUpdated = new Club({
       id: clubIdToUpdate,
       area: { id: Number(infoForUpdate.idArea), name: infoForUpdate.nameArea },
       name: infoForUpdate.name,
@@ -88,7 +87,7 @@ class ClubController {
       clubColors: infoForUpdate.clubColors,
       venue: infoForUpdate.venue,
       lastUpdated: new Date().toISOString(),
-    };
+    });
 
     this.clubService.updateClub(clubUpdated);
 

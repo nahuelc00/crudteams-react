@@ -1,25 +1,33 @@
+const mapClub = require('../mapper/clubMapper');
+
+// Should return mapped entity
+
 class ClubService {
   constructor(clubRepository) {
     this.clubRepository = clubRepository;
   }
 
   getClubs() {
-    return this.clubRepository.getAll();
+    const clubs = this.clubRepository.getAll();
+    const clubsMapped = clubs.map((club) => mapClub(club));
+    return clubsMapped;
   }
 
   getClub(id) {
-    return this.clubRepository.getById(id);
+    const club = this.clubRepository.getById(id);
+    const clubMapped = mapClub(club);
+    return clubMapped;
   }
 
   saveClub(newClub) {
-    const clubs = this.getClubs();
+    const clubs = this.clubRepository.getAll();
     clubs.push(newClub);
 
     this.clubRepository.save(clubs, newClub);
   }
 
   updateClub(clubToUpdate) {
-    const clubs = this.getClubs();
+    const clubs = this.clubRepository.getAll();
 
     for (let index = 0; index < clubs.length; index += 1) {
       const club = clubs[index];
@@ -33,7 +41,7 @@ class ClubService {
   }
 
   deleteClub(id) {
-    const clubs = this.getClubs();
+    const clubs = this.clubRepository.getAll();
     let clubToDelete = {};
 
     for (let index = 0; index < clubs.length; index += 1) {
