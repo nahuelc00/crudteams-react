@@ -10,7 +10,7 @@ function ClubsGrid({ clubs }) {
 
       <div className="d-grid gap-3">
         { clubs.map(({
-          shortName, crestUrl, id, area,
+          shortName, crestUrl, id, nameArea,
         }) => (
 
           <div key={id} className="container club text-center p-0">
@@ -22,7 +22,7 @@ function ClubsGrid({ clubs }) {
                 <span className="club__name">{shortName}</span>
               </div>
 
-              <span className="club__country col p-0">{ area.name }</span>
+              <span className="club__country col p-0">{ nameArea }</span>
 
               <div className="actions col p-0">
                 <Link to={`/club/${id}`}>
