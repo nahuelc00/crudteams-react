@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import { useState, useEffect } from 'react';
 import { getClubs } from '../services/clubs';
 
@@ -6,12 +7,10 @@ function useFetchClubs() {
   const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      getClubs().then((clubs) => {
-        setClubs(clubs);
-        setisLoading(false);
-      });
-    }, 500);
+    getClubs().then((clubs) => {
+      setClubs(clubs);
+      setisLoading(false);
+    });
   }, []);
 
   return { clubs, isLoading };
