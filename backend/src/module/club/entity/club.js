@@ -14,6 +14,7 @@ class Club {
     this.founded = club.founded;
     this.club_colors = club.club_colors;
     this.venue = club.venue;
+    this.created_at = club.created_at;
   }
 }
 

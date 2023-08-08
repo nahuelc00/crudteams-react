@@ -14,6 +14,7 @@ function mapClub(club) {
     founded: club.founded,
     clubColors: club.club_colors,
     venue: club.venue,
+    createdAt: club.created_at,
   };
 
   return clubMapped;
