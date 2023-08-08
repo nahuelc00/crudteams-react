@@ -41,6 +41,7 @@ function Club() {
               <ClubRowInfo description="Founded" value={club.founded} />
               <ClubRowInfo description="Colors" value={club.clubColors} />
               <ClubRowInfo description="Stadium" value={club.venue} />
+              <ClubRowInfo description="Created" value={club.createdAt} />
             </div>
 
             <div>
