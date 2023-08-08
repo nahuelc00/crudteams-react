@@ -3,7 +3,7 @@ function mapClub(club) {
     id: club.id,
     name: club.name,
     shortName: club.shortname,
-    abbreviation: club.tla,
+    tla: club.tla,
     nameArea: club.area_name,
     idArea: club.area_id,
     crestUrl: club.crest_url,
