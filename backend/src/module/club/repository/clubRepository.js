@@ -1,39 +1,85 @@
-/* eslint-disable no-shadow */
-
+const { getLocalDatetime } = require('../../../utilities/utilities');
 const Club = require('../entity/club');
 
 class ClubRepository {
-  constructor(fs, PATH_TEAMS_DB, PATH_TEAM_DB) {
-    this.fs = fs;
-    this.PATH_TEAMS_DB = PATH_TEAMS_DB;
-    this.PATH_TEAM_DB = PATH_TEAM_DB;
+  constructor(db) {
+    this.db = db;
   }
 
   getAll() {
-    const clubs = JSON.parse(this.fs.readFileSync(this.PATH_TEAMS_DB));
+    const clubs = this.db.prepare('SELECT * FROM clubs').all();
     const clubsEntities = clubs.map((club) => new Club(club));
     return clubsEntities;
   }
 
   getById(id) {
-    const clubs = this.getAll();
-    const club = clubs.find((club) => club.id === id);
-    return club;
+    const club = this.db.prepare('SELECT * FROM clubs WHERE id = ?').get(id);
+    const clubEntity = new Club(club);
+    return clubEntity;
   }
 
-  save(clubs, newClub) {
-    this.fs.writeFileSync(this.PATH_TEAMS_DB, JSON.stringify(clubs));
-    this.fs.writeFileSync(`${this.PATH_TEAM_DB}/${newClub.tla}.json`, JSON.stringify(newClub));
+  save(newClub) {
+    const saveClub = this.db.prepare(`INSERT INTO clubs (
+      name,
+      shortname,
+      tla,
+      area_name,
+      area_id,
+      crest_url,
+      address,
+      phone,
+      website,
+      email,
+      founded,
+      club_colors,
+      venue,
+      created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`);
+
+    saveClub.run(
+      newClub.name,
+      newClub.shortname,
+      newClub.tla,
+      newClub.area_name,
+      newClub.area_id,
+      newClub.crest_url,
+      newClub.address,
+      newClub.phone,
+      newClub.website,
+      newClub.email,
+      newClub.founded,
+      newClub.club_colors,
+      newClub.venue,
+      getLocalDatetime(),
+    );
   }
 
-  update(clubs, clubToUpdate) {
-    this.fs.writeFileSync(this.PATH_TEAMS_DB, JSON.stringify(clubs));
-    this.fs.writeFileSync(`${this.PATH_TEAM_DB}/${clubToUpdate.tla}.json`, JSON.stringify(clubToUpdate));
+  update(clubToUpdate) {
+    const updateClub = this.db.prepare(`UPDATE clubs SET name = ?, shortname = ?, tla = ?, area_name = ?, area_id = ?,
+    crest_url = ?, address = ?, phone = ?, website = ?, email = ?, founded = ?, club_colors = ?,
+    venue = ?, updated_at = ? WHERE id = ?`);
+
+    updateClub.run(
+      clubToUpdate.name,
+      clubToUpdate.shortname,
+      clubToUpdate.tla,
+      clubToUpdate.area_name,
+      clubToUpdate.area_id,
+      clubToUpdate.crest_url,
+      clubToUpdate.address,
+      clubToUpdate.phone,
+      clubToUpdate.website,
+      clubToUpdate.email,
+      clubToUpdate.founded,
+      clubToUpdate.club_colors,
+      clubToUpdate.venue,
+      getLocalDatetime(),
+      clubToUpdate.id,
+    );
   }
 
-  delete(clubs, clubToDelete) {
-    this.fs.unlinkSync(`${this.PATH_TEAM_DB}/${clubToDelete.tla}.json`);
-    this.fs.writeFileSync(this.PATH_TEAMS_DB, JSON.stringify(clubs));
+  delete(clubIdToDelete) {
+    const deleteClub = this.db.prepare(`DELETE FROM clubs WHERE id = ${clubIdToDelete}`);
+    deleteClub.run();
   }
 }
 

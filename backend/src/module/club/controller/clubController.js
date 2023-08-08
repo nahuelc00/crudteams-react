@@ -1,9 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-const { getPortAndHostname } = require('../../../env');
-const Club = require('../entity/club');
-
-const { PORT, HOSTNAME } = getPortAndHostname();
+const { buildClubForDB } = require('../../../utilities/utilities');
 
 class ClubController {
   constructor(clubService, upload) {
@@ -40,24 +37,10 @@ class ClubController {
     const club = req.body;
     const imgFile = req.file;
 
-    const clubs = this.clubService.getClubs();
-    const lastClub = clubs[clubs.length - 1];
-
-    const clubToSave = new Club({
-      id: lastClub.id + 1,
-      area: { name: club.nameArea, id: Number(club.idArea) },
-      name: club.name,
-      shortName: club.shortName,
-      tla: club.tla,
-      crestUrl: `http://${HOSTNAME}:${PORT}/files/${imgFile.filename}`,
-      address: club.address,
-      phone: club.phone,
-      website: club.website,
-      email: club.email,
-      founded: Number(club.founded),
-      clubColors: club.clubColors,
-      venue: club.venue,
-    });
+    const clubToSave = buildClubForDB(
+      club,
+      imgFile.filename,
+    );
 
     this.clubService.saveClub(clubToSave);
 
@@ -67,27 +50,15 @@ class ClubController {
 
   updateClub(req, res) {
     const clubIdToUpdate = Number(req.params.id);
-
-    const infoForUpdate = { ...req.body };
-
     const shieldImgFile = req.file;
 
-    const clubUpdated = new Club({
-      id: clubIdToUpdate,
-      area: { id: Number(infoForUpdate.idArea), name: infoForUpdate.nameArea },
-      name: infoForUpdate.name,
-      shortName: infoForUpdate.shortName,
-      tla: infoForUpdate.tla,
-      crestUrl: `http://${HOSTNAME}:${PORT}/files/${shieldImgFile.filename}`,
-      address: infoForUpdate.address,
-      phone: infoForUpdate.phone,
-      website: infoForUpdate.website,
-      email: infoForUpdate.email,
-      founded: Number(infoForUpdate.founded),
-      clubColors: infoForUpdate.clubColors,
-      venue: infoForUpdate.venue,
-      lastUpdated: new Date().toISOString(),
-    });
+    const club = { ...req.body };
+
+    const clubUpdated = buildClubForDB(
+      club,
+      shieldImgFile.filename,
+      clubIdToUpdate,
+    );
 
     this.clubService.updateClub(clubUpdated);
 

@@ -18,41 +18,15 @@ class ClubService {
   }
 
   saveClub(newClub) {
-    const clubs = this.clubRepository.getAll();
-    clubs.push(newClub);
-
-    this.clubRepository.save(clubs, newClub);
+    this.clubRepository.save(newClub);
   }
 
   updateClub(clubToUpdate) {
-    const clubs = this.clubRepository.getAll();
-
-    for (let index = 0; index < clubs.length; index += 1) {
-      const club = clubs[index];
-
-      if (club.id === clubToUpdate.id) {
-        clubs[index] = clubToUpdate;
-      }
-    }
-
-    this.clubRepository.update(clubs, clubToUpdate);
+    this.clubRepository.update(clubToUpdate);
   }
 
   deleteClub(id) {
-    const clubs = this.clubRepository.getAll();
-    let clubToDelete = {};
-
-    for (let index = 0; index < clubs.length; index += 1) {
-      const club = clubs[index];
-      const isClubToRemove = club.id === id;
-
-      if (isClubToRemove) {
-        clubToDelete = { ...club };
-        clubs.splice(index, 1);
-      }
-    }
-
-    this.clubRepository.delete(clubs, clubToDelete);
+    this.clubRepository.delete(id);
   }
 }
 
