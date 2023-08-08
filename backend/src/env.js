@@ -9,12 +9,9 @@ function getPortAndHostname() {
 }
 
 function getDatabasePath() {
-  const { PATH_TEAMS_DB, PATH_TEAM_DB } = process.env;
+  const { PATH_CLUBS_DB } = process.env;
 
-  return {
-    PATH_TEAMS_DB,
-    PATH_TEAM_DB,
-  };
+  return PATH_CLUBS_DB;
 }
 
 module.exports = { getPortAndHostname, getDatabasePath };
