@@ -26,7 +26,8 @@ function ClubForm({ handleSaveClub }) {
   });
 
   useEffect(() => {
-    if (id !== undefined) {
+    const hasId = id !== undefined;
+    if (hasId) {
       getClub(id).then((clubData) => {
         setInputsValue({
           name: clubData.name,
