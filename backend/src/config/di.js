@@ -17,6 +17,8 @@ function configureSession() {
 
   const sessionConfig = {
     secret: getSecretSession(),
+    resave: false,
+    saveUninitialized: false,
     cookie: { maxAge: FIVE_DAYS_IN_SECONDS },
   };
 
