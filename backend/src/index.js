@@ -1,18 +1,24 @@
 require('dotenv').config();
 
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const configureDI = require('./config/di');
-const ejecuteMiddlewares = require('./middlewares');
 const { getPortAndHostname } = require('./env');
-
-const app = express();
 
 const { PORT, HOSTNAME } = getPortAndHostname();
 
-ejecuteMiddlewares(app, express);
+const app = express();
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(express.static('clubsImages'));
 
 (function main() {
   const container = configureDI();
+  const session = container.get('Session');
+
+  app.use(session);
 
   const clubController = container.get('ClubController');
 
