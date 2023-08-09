@@ -14,4 +14,10 @@ function getDatabasePath() {
   return PATH_CLUBS_DB;
 }
 
-module.exports = { getPortAndHostname, getDatabasePath };
+function getSecretSession() {
+  const { SECRET_SESSION } = process.env;
+
+  return SECRET_SESSION;
+}
+
+module.exports = { getPortAndHostname, getDatabasePath, getSecretSession };
