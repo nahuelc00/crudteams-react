@@ -29,7 +29,7 @@ function configureSession() {
 function configurateSequelize() {
   const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: PATH_CLUBS_DB, // Change this for environment variables
+    storage: PATH_CLUBS_DB,
     logging: console.log,
   });
 
