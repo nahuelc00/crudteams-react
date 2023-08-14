@@ -1,20 +1,20 @@
-function mapClub(club) {
+function mapClub(clubEntity) {
   const clubMapped = {
-    id: club.id,
-    name: club.name,
-    shortName: club.shortname,
-    tla: club.tla,
-    nameArea: club.area_name,
-    idArea: club.area_id,
-    crestUrl: club.crest_url,
-    address: club.address,
-    phone: club.phone,
-    website: club.website,
-    email: club.email,
-    founded: club.founded,
-    clubColors: club.club_colors,
-    venue: club.venue,
-    createdAt: club.created_at,
+    id: clubEntity.id,
+    name: clubEntity.name,
+    shortName: clubEntity.shortname,
+    tla: clubEntity.tla,
+    nameArea: clubEntity.area_name,
+    idArea: clubEntity.area_id,
+    crestUrl: clubEntity.crest_url,
+    address: clubEntity.address,
+    phone: clubEntity.phone,
+    website: clubEntity.website,
+    email: clubEntity.email,
+    founded: clubEntity.founded,
+    clubColors: clubEntity.club_colors,
+    venue: clubEntity.venue,
+    createdAt: clubEntity.created_at,
   };
 
   return clubMapped;
