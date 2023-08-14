@@ -5,7 +5,7 @@ import { getGoogleMapsKey } from '../../env';
 
 import { useGetClub } from '../../hooks/useGetClub';
 
-import { handleErrorInShieldImg } from '../../utilities/utilities';
+import { convertUTCtoLocalTime, handleErrorInShieldImg } from '../../utilities/utilities';
 
 import { CrossClose, ClubRowInfo, Loader } from '../components';
 
@@ -41,7 +41,7 @@ function Club() {
               <ClubRowInfo description="Founded" value={club.founded} />
               <ClubRowInfo description="Colors" value={club.clubColors} />
               <ClubRowInfo description="Stadium" value={club.venue} />
-              <ClubRowInfo description="Created" value={club.createdAt} />
+              <ClubRowInfo description="Created" value={convertUTCtoLocalTime(club.createdAt)} />
             </div>
 
             <div>

@@ -3,4 +3,10 @@ function handleErrorInShieldImg(event) {
   event.target.src = '/images/not-shield.png';
 }
 
-export { handleErrorInShieldImg };
+function convertUTCtoLocalTime(utc) {
+  const date = new Date(utc).toISOString().split('T')[0];
+  const time = new Date(utc).toTimeString().split(' ')[0];
+  return `${date} ${time}`;
+}
+
+export { handleErrorInShieldImg, convertUTCtoLocalTime };
