@@ -5,28 +5,28 @@ class ClubService {
     this.clubRepository = clubRepository;
   }
 
-  getClubs() {
-    const clubs = this.clubRepository.getAll();
+  async getClubs() {
+    const clubs = await this.clubRepository.getAll();
     const clubsMapped = clubs.map((club) => mapClub(club));
     return clubsMapped;
   }
 
-  getClub(id) {
-    const club = this.clubRepository.getById(id);
+  async getClub(id) {
+    const club = await this.clubRepository.getById(id);
     const clubMapped = mapClub(club);
     return clubMapped;
   }
 
-  saveClub(newClub) {
-    this.clubRepository.save(newClub);
+  async saveClub(newClub) {
+    await this.clubRepository.save(newClub);
   }
 
-  updateClub(clubToUpdate) {
-    this.clubRepository.update(clubToUpdate);
+  async updateClub(clubToUpdate) {
+    await this.clubRepository.update(clubToUpdate);
   }
 
-  deleteClub(id) {
-    this.clubRepository.delete(id);
+  async deleteClub(id) {
+    await this.clubRepository.delete(id);
   }
 }
 

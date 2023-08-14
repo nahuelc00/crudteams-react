@@ -1,85 +1,65 @@
-const { getLocalDatetime } = require('../../../utilities/utilities');
 const Club = require('../entity/club');
 
 class ClubRepository {
-  constructor(db) {
-    this.db = db;
+  constructor(clubModel) {
+    this.clubModel = clubModel;
   }
 
-  getAll() {
-    const clubs = this.db.prepare('SELECT * FROM clubs').all();
+  async getAll() {
+    const clubs = (await this.clubModel.findAll()).map((club) => club.toJSON());
     const clubsEntities = clubs.map((club) => new Club(club));
     return clubsEntities;
   }
 
-  getById(id) {
-    const club = this.db.prepare('SELECT * FROM clubs WHERE id = ?').get(id);
+  async getById(id) {
+    const club = await this.clubModel.findByPk(id);
     const clubEntity = new Club(club);
     return clubEntity;
   }
 
-  save(newClub) {
-    const saveClub = this.db.prepare(`INSERT INTO clubs (
-      name,
-      shortname,
-      tla,
-      area_name,
-      area_id,
-      crest_url,
-      address,
-      phone,
-      website,
-      email,
-      founded,
-      club_colors,
-      venue,
-      created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`);
+  async save(newClub) {
+    const clubToSave = this.clubModel.build({
+      name: newClub.name,
+      shortname: newClub.shortname,
+      tla: newClub.tla,
+      area_name: newClub.area_name,
+      area_id: newClub.area_id,
+      crest_url: newClub.crest_url,
+      address: newClub.address,
+      phone: newClub.phone,
+      website: newClub.website,
+      email: newClub.email,
+      founded: newClub.founded,
+      club_colors: newClub.club_colors,
+      venue: newClub.venue,
+    });
 
-    saveClub.run(
-      newClub.name,
-      newClub.shortname,
-      newClub.tla,
-      newClub.area_name,
-      newClub.area_id,
-      newClub.crest_url,
-      newClub.address,
-      newClub.phone,
-      newClub.website,
-      newClub.email,
-      newClub.founded,
-      newClub.club_colors,
-      newClub.venue,
-      getLocalDatetime(),
-    );
+    await clubToSave.save();
   }
 
-  update(clubToUpdate) {
-    const updateClub = this.db.prepare(`UPDATE clubs SET name = ?, shortname = ?, tla = ?, area_name = ?, area_id = ?,
-    crest_url = ?, address = ?, phone = ?, website = ?, email = ?, founded = ?, club_colors = ?,
-    venue = ?, updated_at = ? WHERE id = ?`);
+  async update(clubToUpdate) {
+    const club = await this.clubModel.findByPk(clubToUpdate.id);
 
-    updateClub.run(
-      clubToUpdate.name,
-      clubToUpdate.shortname,
-      clubToUpdate.tla,
-      clubToUpdate.area_name,
-      clubToUpdate.area_id,
-      clubToUpdate.crest_url,
-      clubToUpdate.address,
-      clubToUpdate.phone,
-      clubToUpdate.website,
-      clubToUpdate.email,
-      clubToUpdate.founded,
-      clubToUpdate.club_colors,
-      clubToUpdate.venue,
-      getLocalDatetime(),
-      clubToUpdate.id,
-    );
+    club.name = clubToUpdate.name;
+    club.shortname = clubToUpdate.shortname;
+    club.tla = clubToUpdate.tla;
+    club.area_name = clubToUpdate.area_name;
+    club.area_id = clubToUpdate.area_id;
+    club.crest_url = clubToUpdate.crest_url;
+    club.address = clubToUpdate.address;
+    club.phone = clubToUpdate.phone;
+    club.website = clubToUpdate.website;
+    club.email = clubToUpdate.email;
+    club.founded = clubToUpdate.founded;
+    club.club_colors = clubToUpdate.club_colors;
+    club.venue = clubToUpdate.venue;
+
+    club.save();
   }
 
-  delete(clubIdToDelete) {
-    const deleteClub = this.db.prepare(`DELETE FROM clubs WHERE id = ${clubIdToDelete}`);
-    deleteClub.run();
+  async delete(clubIdToDelete) {
+    const clubToDelete = await this.clubModel.findByPk(clubIdToDelete);
+    await clubToDelete.destroy();
   }
 }
 

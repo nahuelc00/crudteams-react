@@ -17,23 +17,22 @@ class ClubController {
     app.delete('/club/:id', (req, res) => this.deleteClub(req, res));
   }
 
-  getClubs(response) {
-    const clubs = this.clubService.getClubs();
+  async getClubs(response) {
+    const clubs = await this.clubService.getClubs();
 
     response.statusCode = 200;
     response.send(clubs);
   }
 
-  getClub(req, res) {
+  async getClub(req, res) {
     const clubId = Number(req.params.id);
-
-    const club = this.clubService.getClub(clubId);
+    const club = await this.clubService.getClub(clubId);
 
     res.statusCode = 200;
     res.send(club);
   }
 
-  saveClub(req, res) {
+  async saveClub(req, res) {
     const club = req.body;
     const imgFile = req.file;
 
@@ -42,13 +41,13 @@ class ClubController {
       imgFile.filename,
     );
 
-    this.clubService.saveClub(clubToSave);
+    await this.clubService.saveClub(clubToSave);
 
     res.statusCode = 201;
     res.send(clubToSave);
   }
 
-  updateClub(req, res) {
+  async updateClub(req, res) {
     const clubIdToUpdate = Number(req.params.id);
     const shieldImgFile = req.file;
 
@@ -60,16 +59,16 @@ class ClubController {
       clubIdToUpdate,
     );
 
-    this.clubService.updateClub(clubUpdated);
+    await this.clubService.updateClub(clubUpdated);
 
     res.statusCode = 200;
     res.send(clubUpdated);
   }
 
-  deleteClub(req, res) {
+  async deleteClub(req, res) {
     const clubIdToDelete = Number(req.params.id);
 
-    this.clubService.deleteClub(clubIdToDelete);
+    await this.clubService.deleteClub(clubIdToDelete);
 
     res.statusCode = 200;
     res.end();
