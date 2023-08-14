@@ -12,7 +12,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static('clubsImages'));
+app.use(express.static('clubs-images'));
 
 (function main() {
   const container = configureDI();
