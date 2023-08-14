@@ -1,16 +1,17 @@
 const {
   default: DIContainer, object, use, factory,
 } = require('rsdi');
+const { Sequelize } = require('sequelize');
 const session = require('express-session');
 const multer = require('multer');
-const db = require('better-sqlite3');
 
 const { getDatabasePath, getSecretSession } = require('../env');
 const { ClubController, ClubService, ClubRepository } = require('../module/club');
+const setupClubModel = require('../module/club/model/clubModel');
 
 const PATH_CLUBS_DB = getDatabasePath();
 
-const upload = multer({ dest: 'clubsImages/files' });
+const upload = multer({ dest: 'clubs-images/files' });
 
 function configureSession() {
   const FIVE_DAYS_IN_SECONDS = 432000;
@@ -25,12 +26,29 @@ function configureSession() {
   return session(sessionConfig);
 }
 
+function configurateSequelize() {
+  const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: PATH_CLUBS_DB, // Change this for environment variables
+    logging: console.log,
+  });
+
+  return sequelize;
+}
+
+function initClubModel() {
+  const sequelize = configurateSequelize();
+  const ClubModel = setupClubModel(sequelize);
+  ClubModel.sync();
+  return ClubModel;
+}
+
 function configureDI() {
   const container = new DIContainer();
 
   container.add({
     Session: factory(configureSession),
-    ClubRepository: object(ClubRepository).construct(db(PATH_CLUBS_DB)),
+    ClubRepository: object(ClubRepository).construct(factory(initClubModel)),
     ClubService: object(ClubService).construct(use(ClubRepository)),
     ClubController: object(ClubController).construct(use(ClubService), upload),
   });
