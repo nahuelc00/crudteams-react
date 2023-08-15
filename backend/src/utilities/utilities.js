@@ -2,9 +2,9 @@ const { getPortAndHostname } = require('../env');
 
 const { PORT, HOSTNAME } = getPortAndHostname();
 
-function buildClubForDB(club, imgFilename, id) {
+function buildClubForDB(club, imgFilename) {
   return {
-    id,
+    id: club.id,
     name: club.name,
     shortname: club.shortName,
     tla: club.tla,

@@ -51,12 +51,11 @@ class ClubController {
     const clubIdToUpdate = Number(req.params.id);
     const shieldImgFile = req.file;
 
-    const club = { ...req.body };
+    const club = { id: clubIdToUpdate, ...req.body };
 
     const clubUpdated = buildClubForDB(
       club,
       shieldImgFile.filename,
-      clubIdToUpdate,
     );
 
     await this.clubService.updateClub(clubUpdated);
