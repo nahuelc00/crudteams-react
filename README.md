@@ -26,3 +26,18 @@ npm run serve
 npm install
 VITE_GOOGLE_MAPS_KEY=YOUR_KEY npm run dev
 ```  
+
+## Frontend testing
+
+1. Enter in the frontend folder and run : 
+ ```
+npm run test
+```  
+
+## Backend testing
+
+2. Enter in the backend folder and run : 
+ ```
+npm run test
+```  
+
