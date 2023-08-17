@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ClubsCounter({ clubsQuantity }) {
   return (
@@ -11,5 +12,9 @@ function ClubsCounter({ clubsQuantity }) {
     </p>
   );
 }
+
+ClubsCounter.propTypes = {
+  clubsQuantity: PropTypes.number,
+};
 
 export { ClubsCounter };

@@ -4,6 +4,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getClub } from '../../../services/clubs';
 
 function ClubForm({ handleSaveClub }) {
@@ -163,6 +164,7 @@ function ClubForm({ handleSaveClub }) {
           className={`form-control ${inputsValue.idArea === '' ? 'is-invalid' : ''}`}
           placeholder="2224"
           name="idArea"
+          min={1}
           type="number"
           defaultValue={inputsValue.idArea}
         />
@@ -239,6 +241,7 @@ function ClubForm({ handleSaveClub }) {
           className={`form-control ${inputsValue.founded === '' ? 'is-invalid' : ''}`}
           placeholder="1899"
           name="founded"
+          min={1}
           type="number"
           defaultValue={inputsValue.founded}
 
@@ -300,5 +303,9 @@ function ClubForm({ handleSaveClub }) {
     </form>
   );
 }
+
+ClubForm.propTypes = {
+  handleSaveClub: PropTypes.func.isRequired,
+};
 
 export { ClubForm };

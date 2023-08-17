@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ClubRowInfo({ description, value }) {
   return (
@@ -10,5 +11,13 @@ function ClubRowInfo({ description, value }) {
     </div>
   );
 }
+
+ClubRowInfo.propTypes = {
+  description: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+};
 
 export { ClubRowInfo };

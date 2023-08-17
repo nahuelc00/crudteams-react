@@ -1,5 +1,7 @@
+/* eslint-disable import/no-cycle */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { handleErrorInShieldImg } from '../../../utilities/utilities';
 import { ClubsColumns } from '..';
 
@@ -47,5 +49,14 @@ function ClubsGrid({ clubs }) {
     </>
   );
 }
+
+ClubsGrid.propTypes = {
+  clubs: PropTypes.arrayOf(PropTypes.shape({
+    shortName: PropTypes.string,
+    crestUrl: PropTypes.string,
+    id: PropTypes.number.isRequired,
+    nameArea: PropTypes.string,
+  })).isRequired,
+};
 
 export { ClubsGrid };

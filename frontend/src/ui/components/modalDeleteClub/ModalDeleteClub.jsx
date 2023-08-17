@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ModalDeleteClub({ handleCloseModal, handleConfirmationModal }) {
   return (
@@ -20,5 +21,10 @@ function ModalDeleteClub({ handleCloseModal, handleConfirmationModal }) {
     </div>
   );
 }
+
+ModalDeleteClub.propTypes = {
+  handleCloseModal: PropTypes.func.isRequired,
+  handleConfirmationModal: PropTypes.func.isRequired,
+};
 
 export { ModalDeleteClub };

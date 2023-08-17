@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function ModalSavedClub({ title, description, exitRoute }) {
   const navigate = useNavigate();
@@ -26,5 +27,11 @@ function ModalSavedClub({ title, description, exitRoute }) {
     </div>
   );
 }
+
+ModalSavedClub.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  exitRoute: PropTypes.string.isRequired,
+};
 
 export { ModalSavedClub };
