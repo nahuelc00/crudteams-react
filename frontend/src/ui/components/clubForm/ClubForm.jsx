@@ -47,7 +47,7 @@ function ClubForm({ handleSaveClub }) {
         });
       });
     }
-  }, [id]);
+  }, [id, getClub]);
 
   function validateForm() {
     const copyOfInputs = { ...inputsValue };
