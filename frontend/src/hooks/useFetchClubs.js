@@ -11,7 +11,7 @@ function useFetchClubs() {
       setClubs(clubs);
       setisLoading(false);
     });
-  }, []);
+  }, [getClubs]);
 
   return {
     clubs, isLoading,

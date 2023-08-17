@@ -14,7 +14,7 @@ function useGetClub() {
       setClub(newClub);
       setIsLoading(false);
     });
-  }, [id]);
+  }, [id, getClub]);
 
   return { club, isLoading };
 }
