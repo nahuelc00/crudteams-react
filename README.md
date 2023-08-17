@@ -2,6 +2,7 @@
 
 Project that displays clubs with the ability to delete, update and create new clubs. Using JSON as a database. 
 Made with React and Node.
+Frontend tested with testing-library and backend with jest.
 
 First all: create google api key in: https://console.cloud.google.com/apis/
 
