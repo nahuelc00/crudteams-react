@@ -13,7 +13,9 @@ function useFetchClubs() {
     });
   }, []);
 
-  return { clubs, isLoading };
+  return {
+    clubs, isLoading,
+  };
 }
 
 export { useFetchClubs };
