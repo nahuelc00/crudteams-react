@@ -5,7 +5,7 @@ const { Sequelize } = require('sequelize');
 const session = require('express-session');
 const multer = require('multer');
 
-const { getDatabasePath, getSecretSession } = require('../env');
+const { getDatabasePath, getSecretSession } = require('../../env');
 const { ClubController, ClubService, ClubRepository } = require('../module/club');
 const setupClubModel = require('../module/club/model/clubModel');
 

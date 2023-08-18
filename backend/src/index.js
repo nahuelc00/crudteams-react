@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const configureDI = require('./config/di');
-const { getPortAndHostname } = require('./env');
+const { getPortAndHostname } = require('../env');
 
 const { PORT, HOSTNAME } = getPortAndHostname();
 

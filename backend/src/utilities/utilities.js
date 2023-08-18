@@ -1,4 +1,4 @@
-const { getPortAndHostname } = require('../env');
+const { getPortAndHostname } = require('../../env');
 
 const { PORT, HOSTNAME } = getPortAndHostname();
 
