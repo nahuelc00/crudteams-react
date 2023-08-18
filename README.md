@@ -1,7 +1,7 @@
 # Clubs App
 
 Project that displays clubs with the ability to delete, update and create new clubs.
-Made with React and Node, using Sqlite for database management.
+Made with React and Node, using Sqlite as database.
 
 Frontend tested with testing-library and backend with jest.
 
