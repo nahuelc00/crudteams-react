@@ -10,7 +10,10 @@ function useFetchClubs() {
     getClubs().then((clubs) => {
       setClubs(clubs);
       setisLoading(false);
-    });
+    })
+      .catch((err) => {
+        throw new Error('Fail at get clubs in hook', err);
+      });
   }, [getClubs]);
 
   return {

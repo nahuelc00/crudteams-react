@@ -45,7 +45,10 @@ function ClubForm({ handleSaveClub }) {
           website: clubData.website,
           shieldImg: null,
         });
-      });
+      })
+        .catch((err) => {
+          throw new Error('Fail at get club in form', err);
+        });
     }
   }, [id, getClub]);
 

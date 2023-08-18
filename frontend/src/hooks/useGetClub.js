@@ -13,7 +13,10 @@ function useGetClub() {
       const newClub = { ...clubData };
       setClub(newClub);
       setIsLoading(false);
-    });
+    })
+      .catch((err) => {
+        throw new Error('Fail at get club in hook', err);
+      });
   }, [id, getClub]);
 
   return { club, isLoading };
