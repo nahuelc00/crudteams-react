@@ -8,9 +8,27 @@ function Form() {
   const [viewModal, setViewModal] = useState(false);
 
   function handleSaveClub(id, clubFormData) {
-    sendClub(clubFormData).then(setViewModal(true));
+    sendClub(clubFormData).then(setViewModal(true)).then(console.log('Soy then'));
   }
 
+  if (viewModal) {
+    return (
+      <ModalSavedClub
+        exitRoute="/"
+        title="Club saved"
+        description="The club has been saved succesfully"
+      />
+    );
+  }
+
+  return (
+    <>
+      <CrossClose exitRoute="/" />
+      <ClubForm handleSaveClub={handleSaveClub} />
+    </>
+  );
+
+  /*
   return (
     viewModal ? (
       <ModalSavedClub
@@ -26,6 +44,7 @@ function Form() {
         </>
       )
   );
+  */
 }
 
 export { Form };

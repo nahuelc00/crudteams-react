@@ -13,20 +13,23 @@ function EditForm() {
     }).then(setViewModal(true));
   }
 
-  return viewModal ? (
-    <ModalSavedClub
-      exitRoute="/"
-      title="Club updated"
-      description="The club has been update succesfully"
-    />
-  )
-    : (
-      <>
-        <ScrollRestoration />
-        <CrossClose exitRoute="/" />
-        <ClubForm handleSaveClub={handleSaveClub} />
-      </>
+  if (viewModal) {
+    return (
+      <ModalSavedClub
+        exitRoute="/"
+        title="Club updated"
+        description="The club has been update succesfully"
+      />
     );
+  }
+
+  return (
+    <>
+      <ScrollRestoration />
+      <CrossClose exitRoute="/" />
+      <ClubForm handleSaveClub={handleSaveClub} />
+    </>
+  );
 }
 
 export { EditForm };
