@@ -1,17 +1,11 @@
 /* eslint-disable react/jsx-no-bind */
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollRestoration } from 'react-router-dom';
 import { ClubForm, ModalSavedClub, CrossClose } from '../components';
+import { useHandleUpdateClub } from '../../hooks/useHandleUpdateClub';
 
 function EditForm() {
-  const [viewModal, setViewModal] = useState(false);
-
-  function handleSaveClub(clubId, formDataClub) {
-    fetch(`http://localhost:8080/club/${clubId}`, {
-      method: 'PUT',
-      body: formDataClub,
-    }).then(setViewModal(true));
-  }
+  const { viewModal, upgradeClub } = useHandleUpdateClub();
 
   if (viewModal) {
     return (
@@ -27,7 +21,7 @@ function EditForm() {
     <>
       <ScrollRestoration />
       <CrossClose exitRoute="/" />
-      <ClubForm handleSaveClub={handleSaveClub} />
+      <ClubForm handleSaveClub={upgradeClub} />
     </>
   );
 }
