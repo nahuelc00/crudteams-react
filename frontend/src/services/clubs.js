@@ -20,6 +20,13 @@ function sendClub(clubFormData) {
   });
 }
 
+function updateClub(id, clubFormData) {
+  return fetch(`http://localhost:8080/club/${id}`, {
+    method: 'PUT',
+    body: clubFormData,
+  });
+}
+
 function deleteClub(clubId) {
   return fetch(`http://${HOST_API}/club/${clubId}`, {
     method: 'delete',
@@ -27,5 +34,5 @@ function deleteClub(clubId) {
 }
 
 export {
-  getClubs, getClub, sendClub, deleteClub,
+  getClubs, getClub, sendClub, deleteClub, updateClub,
 };
