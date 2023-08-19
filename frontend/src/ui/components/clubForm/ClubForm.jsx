@@ -92,9 +92,15 @@ function ClubForm({ handleSaveClub }) {
 
     const formData = new FormData(event.target);
 
+    const isUpdate = id !== undefined;
+    const isSave = id === undefined;
+
     const isFormValid = validateForm();
 
-    if (isFormValid) handleSaveClub(id, formData);
+    if (isFormValid) {
+      if (isSave) handleSaveClub(formData);
+      if (isUpdate) handleSaveClub(id, formData);
+    }
   }
 
   return (
