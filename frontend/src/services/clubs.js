@@ -1,4 +1,4 @@
-import { getHostApi } from '../env';
+import { getHostApi } from '../../env';
 
 const HOST_API = getHostApi() || 'localhost:8080';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { getGoogleMapsKey } from '../../env';
+import { getGoogleMapsKey } from '../../../env';
 
 import { useGetClub } from '../../hooks/useGetClub';
 
