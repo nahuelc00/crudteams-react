@@ -8,7 +8,7 @@ function Form() {
   const [viewModal, setViewModal] = useState(false);
 
   function handleSaveClub(id, clubFormData) {
-    sendClub(clubFormData).then(setViewModal(true)).then(console.log('Soy then'));
+    sendClub(clubFormData).then(setViewModal(true));
   }
 
   if (viewModal) {
