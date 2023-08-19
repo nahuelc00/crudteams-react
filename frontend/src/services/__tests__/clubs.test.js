@@ -1,9 +1,9 @@
 import {
-  deleteClub, sendClub, getClub, getClubs,
+  deleteClub, sendClub, updateClub, getClub, getClubs,
 } from '../clubs';
 
 describe('Service', () => {
-  test('Should return a collection', async () => {
+  test('Should call to fetch for get clubs and return a collection that represent clubs', async () => {
     global.fetch = jest.fn(() => Promise.resolve({
       json: () => Promise.resolve([{ id: 1 }, { id: 2 }]),
     }));
@@ -15,7 +15,7 @@ describe('Service', () => {
     expect(clubs[0]).toHaveProperty('id');
   });
 
-  test('Should return a object', async () => {
+  test('Should call to fetch for get a club and return a object that represent a club', async () => {
     global.fetch = jest.fn(() => Promise.resolve({
       json: () => Promise.resolve({ id: 1 }),
     }));
@@ -35,10 +35,18 @@ describe('Service', () => {
     expect(global.fetch).toHaveBeenCalledTimes(1);
   });
 
-  test('Should call to fetch for save', async () => {
+  test('Should call to fetch for delete', async () => {
     global.fetch = jest.fn();
 
     await deleteClub();
+
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+  });
+
+  test('Should call to fetch for update', async () => {
+    global.fetch = jest.fn();
+
+    await updateClub();
 
     expect(global.fetch).toHaveBeenCalledTimes(1);
   });
