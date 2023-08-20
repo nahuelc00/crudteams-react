@@ -19,7 +19,7 @@ git clone https://github.com/nahuelc00/crudteams-react.git
 
 ```
 npm install
-npm run serve
+npm run dev
 ```  
 
 3. In other tab or terminal, enter in the frontend folder and run:
