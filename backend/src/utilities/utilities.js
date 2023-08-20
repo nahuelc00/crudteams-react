@@ -12,7 +12,7 @@ function buildCrestURL(imgFilename) {
   }
   if (environment === 'production') {
     const productionUrl = getProductionURL();
-    const crestUrl = `https://${productionUrl}/files/${imgFilename}`;
+    const crestUrl = `${productionUrl}/files/${imgFilename}`;
     return crestUrl;
   }
 }
