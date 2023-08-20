@@ -2,9 +2,10 @@ const { getPortAndHostname } = require('../../../env');
 const { buildClubForDB } = require('../utilities');
 
 const { PORT, HOSTNAME } = getPortAndHostname();
+process.env.NODE_ENV = 'development';
 
 describe('Utilities', () => {
-  test('Should return a club builded with id for save a database', () => {
+  test('Should return a club builded with id for save in database', () => {
     const filenameMock = 'filenameOfImageMock';
 
     const clubMock = {
@@ -44,7 +45,10 @@ describe('Utilities', () => {
     });
   });
 
-  test('Should return a club builded without id for save a database', () => {
+  test('Should return a club builded with id for save in database when NODE_ENV=production', () => {
+    process.env.NODE_ENV = 'production';
+    process.env.PRODUCTION_URL = 'https://urlmockofproduction.app';
+
     const filenameMock = 'filenameOfImageMock';
 
     const clubMock = {
@@ -53,7 +57,7 @@ describe('Utilities', () => {
       tla: 'tla mock',
       nameArea: 'nameArea mock',
       idArea: 500,
-      crestUrl: `http://${HOSTNAME}:${PORT}/files/${filenameMock}`,
+      crestUrl: `https://urlmockofproduction.app/files/${filenameMock}`,
       address: 'address mock',
       phone: '1234 mock',
       website: 'www.mockclub.com',
