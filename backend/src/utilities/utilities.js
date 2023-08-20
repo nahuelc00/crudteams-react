@@ -1,8 +1,26 @@
-const { getPortAndHostname } = require('../../env');
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars */
+const { getPortAndHostname, getEnvironment, getProductionURL } = require('../../env');
+
+function buildCrestURL(imgFilename) {
+  const environment = getEnvironment();
+
+  if (environment === 'development') {
+    const crestUrl = `http://${HOSTNAME}:${PORT}/files/${imgFilename}`;
+
+    return crestUrl;
+  }
+  if (environment === 'production') {
+    const productionUrl = getProductionURL();
+    const crestUrl = `${productionUrl}/files/${imgFilename}`;
+    return crestUrl;
+  }
+}
 
 const { PORT, HOSTNAME } = getPortAndHostname();
 
 function buildClubForDB(club, imgFilename) {
+  const crestUrl = buildCrestURL(imgFilename);
   return {
     id: club.id,
     name: club.name,
@@ -10,7 +28,7 @@ function buildClubForDB(club, imgFilename) {
     tla: club.tla,
     area_name: club.nameArea,
     area_id: Number(club.idArea),
-    crest_url: `http://${HOSTNAME}:${PORT}/files/${imgFilename}`,
+    crest_url: crestUrl,
     address: club.address,
     phone: club.phone,
     website: club.website,
