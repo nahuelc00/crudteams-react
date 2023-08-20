@@ -2,6 +2,8 @@
 /* eslint-disable no-unused-vars */
 const { getPortAndHostname, getEnvironment, getProductionURL } = require('../../env');
 
+const { PORT, HOSTNAME } = getPortAndHostname();
+
 function buildCrestURL(imgFilename) {
   const environment = getEnvironment();
 
@@ -16,8 +18,6 @@ function buildCrestURL(imgFilename) {
     return crestUrl;
   }
 }
-
-const { PORT, HOSTNAME } = getPortAndHostname();
 
 function buildClubForDB(club, imgFilename) {
   const crestUrl = buildCrestURL(imgFilename);
