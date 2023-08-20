@@ -6,7 +6,6 @@ import { handleErrorInShieldImg } from '../../../utilities/utilities';
 import { ClubsColumns } from '..';
 
 function ClubsGrid({ clubs }) {
-  console.log(clubs);
   return (
     <>
       <ClubsColumns />
