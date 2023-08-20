@@ -21,7 +21,7 @@ function sendClub(clubFormData) {
 }
 
 function updateClub(id, clubFormData) {
-  return fetch(`http://localhost:8080/club/${id}`, {
+  return fetch(`http://${HOST_API}/club/${id}`, {
     method: 'PUT',
     body: clubFormData,
   });
