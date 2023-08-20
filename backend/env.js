@@ -20,4 +20,16 @@ function getSecretSession() {
   return SECRET_SESSION;
 }
 
-module.exports = { getPortAndHostname, getDatabasePath, getSecretSession };
+function getEnvironment() {
+  const { NODE_ENV } = process.env;
+  return NODE_ENV;
+}
+
+function getProductionURL() {
+  const { PRODUCTION_URL } = process.env;
+  return PRODUCTION_URL;
+}
+
+module.exports = {
+  getPortAndHostname, getDatabasePath, getSecretSession, getEnvironment, getProductionURL,
+};
