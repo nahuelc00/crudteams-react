@@ -28,15 +28,15 @@ function ClubsGrid({ clubs }) {
 
               <div className="actions col p-0">
                 <Link to={`/club/${id}`}>
-                  <img className="actions__see" src="/images/actions/see.png" alt="see" />
+                  <img className="actions__see" src="images/actions/see.png" alt="see" />
                 </Link>
 
                 <Link to={`/form/edit/${id}`}>
-                  <img className="actions__edit" src="/images/actions/edit.png" alt="edit" />
+                  <img className="actions__edit" src="images/actions/edit.png" alt="edit" />
                 </Link>
 
                 <Link to={`/club/delete/${id}`}>
-                  <img className="actions__delete" src="/images/actions/delete.png" alt="delete" />
+                  <img className="actions__delete" src="images/actions/delete.png" alt="delete" />
                 </Link>
               </div>
 
