@@ -6,7 +6,7 @@ describe('Utilities', () => {
 
     handleErrorInShieldImg(eventMock);
 
-    expect(eventMock.target.src).toBe('/images/not-shield.png');
+    expect(eventMock.target.src).toBe('/not-shield.png');
   });
 
   test('Should convert utc date in local date time', () => {
