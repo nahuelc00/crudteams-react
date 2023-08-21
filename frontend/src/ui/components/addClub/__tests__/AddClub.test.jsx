@@ -2,16 +2,16 @@
 
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-
-import { MemoryRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { AddClub } from '../AddClub';
 
 describe('AddClub component', () => {
   test('Should render component and have the correct href attribute', () => {
     render(
-      <MemoryRouter>
+      <BrowserRouter>
         <AddClub />
-      </MemoryRouter>,
+      </BrowserRouter>
+      ,
     );
 
     expect(screen.getByRole('link')).toBeInTheDocument();
