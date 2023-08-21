@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
-import { ScrollRestoration } from 'react-router-dom';
 import { ClubForm, ModalSavedClub, CrossClose } from '../components';
 import { useHandleUpdateClub } from '../../hooks/useHandleUpdateClub';
+import { useScrollToTop } from '../../hooks/useScrollToTop';
 
 function EditForm() {
   const { viewModal, upgradeClub } = useHandleUpdateClub();
+
+  useScrollToTop();
 
   if (viewModal) {
     return (
@@ -19,7 +21,6 @@ function EditForm() {
 
   return (
     <>
-      <ScrollRestoration />
       <CrossClose exitRoute="/" />
       <ClubForm handleSaveClub={upgradeClub} />
     </>
