@@ -21,7 +21,7 @@ function ClubsGrid({ clubs }) {
 
               <div className="col p-0 container-shield-name">
                 <img onError={handleErrorInShieldImg} className="container-shield-name__shield" src={crestUrl} alt="" />
-                <span className="club__name">{shortName}</span>
+                <span className="container-shield-name__name">{shortName}</span>
               </div>
 
               <span className="club__country col p-0">{ nameArea }</span>
