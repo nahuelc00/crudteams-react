@@ -39,16 +39,23 @@ function configurateSequelize() {
 function initClubModel() {
   const sequelize = configurateSequelize();
   const ClubModel = setupClubModel(sequelize);
-  ClubModel.sync();
   return ClubModel;
+}
+
+function addClubModelAtContainer(container) {
+  container.add({
+    ClubModel: factory(initClubModel),
+  });
 }
 
 function configureDI() {
   const container = new DIContainer();
 
+  addClubModelAtContainer(container);
+
   container.add({
     Session: factory(configureSession),
-    ClubRepository: object(ClubRepository).construct(factory(initClubModel)),
+    ClubRepository: object(ClubRepository).construct(use(container.get('ClubModel'))),
     ClubService: object(ClubService).construct(use(ClubRepository)),
     ClubController: object(ClubController).construct(use(ClubService), upload),
   });
