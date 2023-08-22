@@ -1,22 +1,28 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ModalDeleteClub } from '../components';
-import { deleteClub } from '../../services/clubs';
+import { Loader, ModalDeleteClub } from '../components';
+import { useHandleDeleteClub } from '../../hooks/useHandleDeleteClub';
 
 function Delete() {
-  const navigate = useNavigate();
   const { id } = useParams();
+
+  const { removeClub, isRemoving } = useHandleDeleteClub({ id });
+
+  const navigate = useNavigate();
 
   function handleCloseModal() {
     navigate('/');
   }
 
   function handleConfirmationModal() {
-    deleteClub(id).then(() => {
-      navigate('/');
-    });
+    removeClub();
   }
+
+  if (isRemoving) {
+    return <Loader />;
+  }
+
   return (
     <ModalDeleteClub
       handleCloseModal={handleCloseModal}
