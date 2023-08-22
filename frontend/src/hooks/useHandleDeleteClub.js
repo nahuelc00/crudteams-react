@@ -11,7 +11,10 @@ function useHandleDeleteClub({ id }) {
     deleteClub(id).then(() => {
       setIsRemoving(false);
       navigate('/');
-    });
+    })
+      .catch((err) => {
+        throw new Error('Fail at delete club in hook', err);
+      });
   }
 
   return { removeClub, isRemoving };

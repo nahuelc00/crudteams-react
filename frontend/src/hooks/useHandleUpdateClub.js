@@ -10,7 +10,10 @@ function useHandleUpdateClub() {
     updateClub(id, clubFormData).then(() => {
       setIsUpdating(false);
       setViewModal(true);
-    });
+    })
+      .catch((err) => {
+        throw new Error('Fail at update club in hook', err);
+      });
   }
 
   return { viewModal, upgradeClub, isUpdating };

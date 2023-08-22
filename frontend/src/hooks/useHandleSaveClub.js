@@ -10,7 +10,10 @@ function useHandleSaveClub() {
     sendClub(clubFormData).then(() => {
       setViewModal(true);
       setIsSaving(false);
-    });
+    })
+      .catch((err) => {
+        throw new Error('Fail at save club in hook', err);
+      });
   }
 
   return { viewModal, saveClub, isSaving };
