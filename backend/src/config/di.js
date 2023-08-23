@@ -39,6 +39,7 @@ function configurateSequelize() {
 function initClubModel() {
   const sequelize = configurateSequelize();
   const ClubModel = setupClubModel(sequelize);
+  ClubModel.sync();
   return ClubModel;
 }
 
