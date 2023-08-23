@@ -42,20 +42,12 @@ function initClubModel() {
   return ClubModel;
 }
 
-function addClubModelAtContainer(container) {
-  container.add({
-    ClubModel: factory(initClubModel),
-  });
-}
-
 function configureDI() {
   const container = new DIContainer();
 
-  addClubModelAtContainer(container);
-
   container.add({
     Session: factory(configureSession),
-    ClubRepository: object(ClubRepository).construct(use(container.get('ClubModel'))),
+    ClubRepository: object(ClubRepository).construct(factory(initClubModel)),
     ClubService: object(ClubService).construct(use(ClubRepository)),
     ClubController: object(ClubController).construct(use(ClubService), upload),
   });
