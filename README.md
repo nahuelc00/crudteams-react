@@ -1,7 +1,6 @@
 # Clubs App
 https://clubs-nahuelc00.vercel.app/
 
-## C4 DIAGRAMS 
 C4 Diagrams. Levels 1, 2 and 3.
 
 ![](./C4-DIAGRAM_L1-L2.jpg)
