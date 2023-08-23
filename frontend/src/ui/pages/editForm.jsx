@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import {
-  ClubForm, ModalSavedClub, CrossClose, Loader,
+  ClubForm, ExitModal, CrossClose, Loader,
 } from '../components';
 import { useHandleUpdateClub } from '../../hooks/useHandleUpdateClub';
 import { useScrollToTop } from '../../hooks/useScrollToTop';
@@ -17,10 +17,10 @@ function EditForm() {
 
   if (viewModal) {
     return (
-      <ModalSavedClub
+      <ExitModal
         exitRoute="/"
         title="Club updated"
-        description="The club has been update succesfully"
+        description="The club has been succesfully updated"
       />
     );
   }

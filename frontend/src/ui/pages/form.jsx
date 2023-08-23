@@ -2,7 +2,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
 import {
-  ClubForm, ModalSavedClub, CrossClose, Loader,
+  ClubForm, ExitModal, CrossClose, Loader,
 } from '../components';
 import { useHandleSaveClub } from '../../hooks/useHandleSaveClub';
 
@@ -15,10 +15,10 @@ function Form() {
 
   if (viewModal) {
     return (
-      <ModalSavedClub
+      <ExitModal
         exitRoute="/"
         title="Club saved"
-        description="The club has been saved succesfully"
+        description="The club has been succesfully saved"
       />
     );
   }

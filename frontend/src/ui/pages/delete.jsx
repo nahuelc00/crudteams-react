@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Loader, ModalDeleteClub } from '../components';
+import { Loader, ModalDeleteClub, ExitModal } from '../components';
 import { useHandleDeleteClub } from '../../hooks/useHandleDeleteClub';
 
 function Delete() {
   const { id } = useParams();
 
-  const { removeClub, isRemoving } = useHandleDeleteClub({ id });
+  const { removeClub, isRemoving, viewModal } = useHandleDeleteClub({ id });
 
   const navigate = useNavigate();
 
@@ -17,6 +17,16 @@ function Delete() {
 
   function handleConfirmationModal() {
     removeClub();
+  }
+
+  if (viewModal) {
+    return (
+      <ExitModal
+        exitRoute="/"
+        title="Club deleted"
+        description="The club has been succesfully deleted"
+      />
+    );
   }
 
   if (isRemoving) {
