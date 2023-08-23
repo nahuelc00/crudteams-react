@@ -3,7 +3,7 @@ export * from './addClub/AddClub';
 export * from './clubsGrid/ClubsGrid';
 export * from './clubsColumns/ClubsColumns';
 export * from './loader/Loader';
-export * from './modalSavedClub/ModalSavedClub';
+export * from './exitModal/ExitModal';
 export * from './clubForm/ClubForm';
 export * from './crossClose/CrossClose';
 export * from './clubRowInfo/ClubRowInfo';
