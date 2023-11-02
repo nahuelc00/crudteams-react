@@ -1,5 +1,5 @@
 # Clubs App
-https://clubs-nahuelc00.vercel.app/
+https://crudteams-react.vercel.app/
 
 C4 Diagrams. Levels 1, 2 and 3.
 
