@@ -1,13 +1,13 @@
 # Clubs App
 https://crudteams-react.vercel.app/
 
-C4 Diagrams. Levels 1, 2 and 3.
+### C4 Diagrams. Levels 1, 2 and 3.
 
 ![](./C4-DIAGRAM_L1-L2.jpg)
 
 ![](./C4-DIAGRAM_L3.jpg)
 
-Database diagram
+### Database diagram
 
 ![](./DIAGRAM_DB.svg)
 
