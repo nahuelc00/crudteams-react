@@ -7,6 +7,10 @@ C4 Diagrams. Levels 1, 2 and 3.
 
 ![](./C4-DIAGRAM_L3.jpg)
 
+Database diagram
+
+![](./DIAGRAM_DB.svg)
+
 Project that displays clubs with the ability to delete, update and create clubs.
 Made with React and Node, using Sqlite as database management.
 
